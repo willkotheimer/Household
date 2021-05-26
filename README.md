@@ -10,7 +10,7 @@ Pinterest allows for users to show their ideas, and has served as a way to curat
 
 Most people *don't live in houses that are on display* regularly, and *often put things away in the wrong place*.
 
-People whose living spaces don't match Marie Kondo or Martha Stewart may still need a way to show others (if just people in their own household) how they prefer to keep things organized. This need personalizes and makes it less *influencer*, and more simply being just a good citizen of the house. 
+People whose living spaces don't match Marie Kondo or Martha Stewart may still need a way to show others (if just people in their own household) or to remember themselves, how they prefer to keep things organized. This need personalizes and makes it less *influencer*, and more simply being just a good citizen of the house. 
 
 That's where Household comes in. Household addresses the need families have to show each other how things should be organized.
 
