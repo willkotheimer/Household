@@ -6,7 +6,7 @@ This is a capstone for Nashville Software School that will comprise of both back
 
 #### Need
 
-Pinterest allows for users to show their ideas, and has served as a way to curate and *work on ourselves* via what they aspire their boards to be.
+Pinterest allows for users to show their ideas, and has served as a way to curate and *work on themselves* via what they aspire their boards to be.
 
 Most people *don't live in houses that are on display* regularly, and *often put things away in the wrong place*.
 
