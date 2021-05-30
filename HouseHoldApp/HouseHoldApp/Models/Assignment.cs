@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HouseHoldApp.Models
 {
-    public class Assignment
+    public class Assignments
     {
         public int Id { get; set; }
         public int UserId { get; set; }
