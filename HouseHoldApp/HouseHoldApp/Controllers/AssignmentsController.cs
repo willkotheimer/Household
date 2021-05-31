@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using HouseHoldApp.DataAccess;
 using HouseHoldApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HouseHoldApp.Controllers
 {
@@ -64,8 +59,6 @@ namespace HouseHoldApp.Controllers
             _repo.UpdateAssignment(assignment);
             return NoContent();
         }
-
-
 
     }
 }
