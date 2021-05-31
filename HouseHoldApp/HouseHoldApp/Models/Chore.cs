@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HouseHoldApp.Models
 {
-    public class Chore
+    public class Chores
     {
         public int Id { get; set; }
         public string Name { get; set; }

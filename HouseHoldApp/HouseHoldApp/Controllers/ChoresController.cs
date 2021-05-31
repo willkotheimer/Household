@@ -1,0 +1,50 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using HouseHoldApp.DataAccess;
+using HouseHoldApp.Models;
+
+namespace HouseHoldApp.Controllers
+{
+    [Route("api/Chores")]
+    [ApiController]
+    public class ChoresController : ControllerBase
+    {
+        ChoresRepository _repo;
+        public ChoresController()
+        {
+            _repo = new ChoresRepository();
+        }
+
+        [HttpGet]
+        public IActionResult GetAllChores()
+        {
+            return Ok(_repo.GetAllChores());
+        }
+
+
+        [HttpGet("{id}")]
+        public IActionResult GetChoreById(int id)
+        {
+            var Chore = _repo.GetChoreById(id);
+
+            if (Chore == null)
+            {
+                return NotFound("This Chore does not exist");
+            }
+            return Ok(Chore);
+        }
+
+        [HttpPost]
+        public IActionResult AddAnChore(Chores Chore)
+        {
+            _repo.AddAChore(Chore);
+            return Created($"api/Chores/{Chore.Id}", Chore);
+        }
+
+        [HttpPatch]
+        public IActionResult UpdateChore(Chores Chore)
+        {
+            _repo.Updatechore(Chore);
+            return NoContent();
+        }
+    }
+}
