@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace HouseHoldApp.Models
 {
-    public class HouseHold
+    public class Household
     {
-        public int Id;
-        public string Name;
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -40,7 +40,7 @@ namespace HouseHoldApp.DataAccess
             var sql = $@"SELECT * FROM [Users] u
                         JOIN HouseHold_User hu on hu.UserId = u.Id 
                         WHERE hu.HouseholdId=(SELECT hu.HouseholdId FROM [Users] u
-                        JOIN HouseHold_User hu on hu.UserId = u.Id
+                        JOIN HouseholdUser hu on hu.UserId = u.Id
                         WHERE u.Id = @id)";
             var result = db.Query<UserHousehold>(sql, new { Id = id }).OrderByDescending(user => user.Lastname).ToList();
             return result;
