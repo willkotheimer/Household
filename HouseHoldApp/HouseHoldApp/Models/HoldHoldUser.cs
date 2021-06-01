@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace HouseHoldApp.Models
 {
-    public class HoldHoldUser
+    public class HoldholdUser
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public int HouseHoldId { get; set; }
-        public bool isConfirmed { get; set; }
+        public int HouseholdId { get; set; }
+        public bool IsConfirmed { get; set; }
 
     }
 }
