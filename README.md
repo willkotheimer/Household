@@ -22,6 +22,6 @@ That's where Household comes in. Household addresses the need families have to s
 
 [https://lucid.app/lucidchart/45da1289-56bf-4144-86fb-48f325d948b2/edit?page=0_0#](link to database diagram)
 
-### Splash Page Mockup (hifidelity mock by [Tim Bishop](http://www.linkedin.com/in/timbishopdesign)
+### Splash Page Mockup (hifidelity mock by [Tim Bishop](http://www.linkedin.com/in/timbishopdesign))
 
 ![image](https://user-images.githubusercontent.com/5234281/120415197-c23bc980-c320-11eb-8289-53f78f502bc7.png)
