@@ -22,3 +22,6 @@ That's where Household comes in. Household addresses the need families have to s
 
 [https://lucid.app/lucidchart/45da1289-56bf-4144-86fb-48f325d948b2/edit?page=0_0#](link to database diagram)
 
+### Splash Page Mockup
+
+![](https://www.linkedin.com/dms/C4D06AQFquBhPuV1sqg/messaging-attachmentFile/0/1622580933008?m=AQLgveCGhZ7PYgAAAXnKZp7MYS4au6WSshXWF1mP6k806VQxbcIwVx_Cxg&ne=1&v=beta&t=Dee1i5x_7V6qVyfX4ER3W7_mOQG9gXb4WFbjtuiJujs)
