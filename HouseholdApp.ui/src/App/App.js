@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from '../helpers/Routes';
 import Nav from '../Components/Nav';
 import './App.scss';
 import fbConnection from '../helpers/data/fbConnection';
@@ -38,7 +39,8 @@ class App extends React.Component {
     <div className='App'>
       <UserProvider>
           <Router>
-            <Nav user={user} userDetails={userDetails} />
+            <Nav />
+            <Routes />
           </Router>
       </UserProvider>
     </div>
