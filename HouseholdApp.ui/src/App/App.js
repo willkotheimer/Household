@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Nav from '../Components/Nav';
 import './App.scss';
 import fbConnection from '../helpers/data/fbConnection';
+import { UserProvider } from '../Components/User';
 
 fbConnection();
 
@@ -35,9 +36,11 @@ class App extends React.Component {
     const { user, userDetails } = this.state;
     return (
     <div className='App'>
-      <Router>
-        <Nav user={user} userDetails={userDetails} />
-      </Router>
+      <UserProvider>
+          <Router>
+            <Nav user={user} userDetails={userDetails} />
+          </Router>
+      </UserProvider>
     </div>
     );
   }
