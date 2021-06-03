@@ -9,21 +9,18 @@ export default function Nav(props) {
     <>
     <div className="navbar-container p-2 d-flex justify-content-center align-items-center">
       <header className="brand-container">
-        <Link to="/" className='brand'>Toboggan</Link>
+        <Link to="/" className='brand'>Household</Link>
       </header>
       <nav className="navbar">
         <div className="navbar-items">
-          <Link to="/shops" className="navbar-item">
-            Shops
+          <Link to="/assignchores" className="navbar-item">
+            Assign Chores
           </Link>
-          <Link to="/categories" className="navbar-item">
-            Categories
+          <Link to="/stats" className="navbar-item">
+            Stats
           </Link>
-          <Link to="/user-dashboard" className="user-icon m-2">
-            <FontAwesomeIcon icon={faUserCircle} />
-          </Link>
-          <Link to="/shopping-cart" className="navbar-item">
-            Another link
+          <Link to="/inspireme" className="navbar-item">
+            Inspire Me
           </Link>
         </div>
       </nav>
