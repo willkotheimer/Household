@@ -33,6 +33,19 @@ namespace HouseHoldApp.Controllers
             return Ok(Chore);
         }
 
+
+        [HttpGet("household/{id}"]
+        public IActionResult GetChoreByHouseholdId(int id)
+        {
+            var Chore = _repo.GetChoreByHouseholdId(id);
+            if(Chore == null)
+            {
+                return NotFound("This Chore does not exist");
+            }
+            return Ok(Chore);
+        }
+
+
         [HttpPost]
         public IActionResult AddAnChore(Chores Chore)
         {

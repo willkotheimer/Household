@@ -20,7 +20,7 @@ namespace HouseHoldApp.DataAccess
             return results;
         }
 
-        public List<Assignments>GetAllAssignmentsOfUser(int userId)
+        public List<Assignments> GetAllAssignmentsOfUser(int userId)
         {
             using var db = new SqlConnection(ConnectionString);
             var sql = @"SELECT * FROM Assignments WHERE UserId = @userId";
