@@ -14,6 +14,7 @@ export default function Routes({ user, authed }) {
             <Route exact path='/assignchores' component={AssignChores} />
             <Route exact path='/stats' component={Stats} />
             <Route exact path='/inspireme' component={InspireMe} />
+            <Route exact path='/householdDashboard' component={CreateHouseholdView} />
         </Switch>
   );
 }

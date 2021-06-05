@@ -22,6 +22,9 @@ export default function Nav(props) {
           <Link to="/inspireme" className="navbar-item">
             Inspire Me
           </Link>
+          <Link to="/householdDashboard" className="navbar-item">
+            Household Dashboard
+          </Link>
         </div>
       </nav>
       <div className='user-icon-container '>
