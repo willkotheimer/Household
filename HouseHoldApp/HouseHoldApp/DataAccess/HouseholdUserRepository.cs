@@ -26,14 +26,14 @@ namespace HouseHoldApp.DataAccess
             return result;
         }
 
-        public List<UserHousehold> GetUsersInUsersHouseHold(int id)
+        public List<UserHousehold> GetUsersInUsersHouseHold(string id)
         {
             using var db = new SqlConnection(ConnectionString);
             var sql = $@"SELECT * FROM [Users] u
                         JOIN HouseholdUser hu on hu.UserId = u.Id 
                         WHERE hu.HouseholdId=(SELECT hu.HouseholdId FROM [Users] u
                         JOIN HouseholdUser hu on hu.UserId = u.Id
-                        WHERE u.Id = @id)";
+                        WHERE u.FirebaseKey = @id)";
             var result = db.Query<UserHousehold>(sql, new { Id = id }).OrderByDescending(user => user.Lastname).ToList();
             return result;
         }

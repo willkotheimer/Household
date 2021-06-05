@@ -34,7 +34,7 @@ namespace HouseHoldApp.Controllers
         }
 
 
-        [HttpGet("household/{id}"]
+        [HttpGet("household/{id}")]
         public IActionResult GetChoreByHouseholdId(int id)
         {
             var Chore = _repo.GetChoreByHouseholdId(id);
