@@ -5,7 +5,6 @@ import Routes from '../helpers/Routes';
 import Nav from '../Components/Nav';
 import './App.scss';
 import fbConnection from '../helpers/data/fbConnection';
-import { UserProvider } from '../Components/User';
 
 fbConnection();
 
@@ -13,6 +12,7 @@ class App extends React.Component {
   state = {
     user: null,
     userDetails: {},
+    userHousehold: [],
   };
 
   componentDidMount() {
@@ -34,15 +34,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { user, userDetails } = this.state;
     return (
     <div className='App'>
-      <UserProvider>
           <Router>
-            <Nav />
-            <Routes />
+            <Nav user={this.state.user} />
+            <Routes authed={this.state.authed} user={this.state.user} />
           </Router>
-      </UserProvider>
     </div>
     );
   }
