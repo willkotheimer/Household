@@ -13,6 +13,7 @@ namespace HouseHoldApp.DataAccess
         public List<AssignmentsChores> GetAssignmentChoresByHouseholdId(int id)
         {
             using var db = new SqlConnection(ConnectionString);
+           
             var sql = $@"SELECT * FROM Assignments a
                          JOIN Chores c ON c.Id = a.ChoreId
                          WHERE c.HouseHoldId = @id";
