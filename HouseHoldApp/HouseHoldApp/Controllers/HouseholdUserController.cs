@@ -21,7 +21,7 @@ namespace HouseHoldApp.Controllers
         }
 
         [HttpGet("UserHousehold/{id}")]
-        public IActionResult GetUsersInUsersHouseHold(int id)
+        public IActionResult GetUsersInUsersHouseHold(string id)
         {
             var usersInHousehold = _repo.GetUsersInUsersHouseHold(id);
 
