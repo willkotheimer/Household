@@ -27,6 +27,22 @@ namespace HouseHoldApp.DataAccess
                 return result;
             }
 
+             public Images GetOneImageByChoreId(int Choreid)
+            {
+                using var db = new SqlConnection(ConnectionString);
+                var sql = "SELECT * FROM Images WHERE ChoreId = @Choreid";
+                var result = db.QueryFirstOrDefault<Images>(sql, new { Choreid = Choreid });
+                return result;
+            }
+
+            public List<Images> GetOneImagePerChoreId()
+            {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"SELECT * FROM (SELECT Image, ChoreId, ROW_NUMBER() OVER(PARTITION BY ChoreId ORDER BY ChoreId ASC) things FROM Images) i WHERE things = 1";
+            var result = db.Query<Images>(sql).ToList();
+            return result;
+            }
+
             public void AddAnImage(Images image)
             {
                 using var db = new SqlConnection(ConnectionString);
