@@ -32,6 +32,15 @@ namespace HouseHoldApp.Controllers
             return Ok(images);
         }
 
+        [HttpGet("oneperchore")]
+        public IActionResult GetOneImagePerChoreId() {
+            var image = _repo.GetOneImagePerChoreId();
+            if (image == null) {
+                return NotFound("No images exists for this chore");
+            }
+            return Ok(image);
+        }
+
         [HttpPost]
         public IActionResult AddAnImage(Images image)
         {

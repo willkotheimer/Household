@@ -4,6 +4,8 @@ import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
+import ImageSmall from '../ImageSmall';
+import getImagesByChoreId from '../../helpers/data/imageData';
 
 const Accordion = withStyles({
   root: {
@@ -45,11 +47,11 @@ const AccordionSummary = withStyles({
 
 const AccordionDetails = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(8),
+    padding: theme.spacing(4),
   },
 }))(MuiAccordionDetails);
 
-export default function CustomizedAccordions({ userAssignments }) {
+export default function CustomizedAccordions({ userAssignments, images }) {
   const [expanded, setExpanded] = React.useState('panel1');
 
   useEffect(() => {
@@ -61,13 +63,24 @@ export default function CustomizedAccordions({ userAssignments }) {
         <AccordionSummary key={`accordsummary${item}`} aria-controls="paneld-content" id="panelheader">
           <Typography component={'span'} key={`typo1-${item}`}>Category: {item.categoryName}</Typography>
         </AccordionSummary>
-        <AccordionDetails key={`accordDetails-${item}`}>
+        <AccordionDetails className="d-flex flex-wrap" key={`accordDetails-${item}`}>
         <span key={`span-${item}`}>
+        <Typography>
+        { images[item.choreId] && <ImageSmall image={images[item.choreId].image} /> }
+        </Typography>
         <Typography component={'span'} key={`typo2-${item}`}>
+        <span className='accordTitle'>Description:</span>
         <div key={`div2-${item}`}>{item.chorename}</div>
-        <p key={`p-${item}`}>{item.choreDescription}</p>
+        <span className='accordTitle'>Instructions:</span>
+        <p className='accordDescription' key={`p-${item}`}>{item.choreDescription}</p>
         </Typography>
         </span>
+        <Typography component={'span'} key={`typo3-${item}`}>
+        <span className='accordTitle'>Assigned to:</span>
+        <div key={`div3-${item}`}>{(item.firstname) ? item.firstname : ' no one'}</div>
+        <span className='accordTitle'>Status:</span>
+        <p key={`p2-${item}`}>{(item.isCompleted) ? 'Complete' : 'Not Complete'}</p>
+        </Typography>
         </AccordionDetails>
       </Accordion>
     )));
