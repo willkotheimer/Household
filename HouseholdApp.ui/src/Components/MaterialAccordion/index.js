@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
@@ -80,6 +81,7 @@ export default function CustomizedAccordions({ userAssignments, images }) {
         <div key={`div3-${item}`}>{(item.firstname) ? item.firstname : ' no one'}</div>
         <span className='accordTitle'>Status:</span>
         <p key={`p2-${item}`}>{(item.isCompleted) ? 'Complete' : 'Not Complete'}</p>
+        <Link to={{ pathname: `/chore/${item.choreId}` }}>Details</Link>
         </Typography>
         </AccordionDetails>
       </Accordion>

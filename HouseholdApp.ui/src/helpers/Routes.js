@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router';
 import AssignChores from '../Views/AssignChores';
 import ChoresDetailsView from '../Views/ChoreDetails';
 import CreateHouseholdView from '../Views/CreateHouseHold';
@@ -20,6 +20,7 @@ export default function Routes({
             <Route exact path='/stats' component={(props) => <Stats props={props} user={user} />}/>
             <Route exact path='/inspireme' component={(props) => <InspireMe props={props} user={user} />}/>
             <Route exact path='/householdDashboard' component={(props) => <CreateHouseholdView props={props} user={user} uid={uid} userHousehold={userHousehold} />}/>
+            <Route exact path='/chore/:id' component={ChoresDetailsView}/>
         </Switch>
   );
 }
