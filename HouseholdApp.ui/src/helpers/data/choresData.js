@@ -1,12 +1,35 @@
 import axios from 'axios';
-import { baseUrl } from './config.json';
+import { baseUrl } from '../config.json';
 
 const choresURL = `${baseUrl}/Chores`;
 
 const getChoresByHousehold = (id) => new Promise((resolve, reject) => {
-    axios.get(`${choresURL}/household/${id}`).then((response) => {
-        resolve(response.data);
-    }).catch((error) => reject(error))
+  axios.get(`${choresURL}/household/${id}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
 });
 
-export default { getChoresByHousehold }
+const GetChoreById = (choreId) => new Promise((resolve, reject) => {
+  axios.get(`${choresURL}/${choreId}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+const addChore = (chore) => new Promise((resolve, reject) => {
+  axios.post(`${choresURL}`, chore).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+const updateChore = (chore) => new Promise((resolve, reject) => {
+  axios.patch(`${choresURL}`, chore).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+export default {
+  getChoresByHousehold,
+  addChore,
+  updateChore,
+  GetChoreById,
+};
