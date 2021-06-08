@@ -24,8 +24,9 @@ export default function ChoreDetailsView(props) {
     images.getImagesByChoreId(id).then((img) => {
       setImages(img);
     });
-    images.getImagesByChoreId(id).then((img) => {
-      setImages(img);
+    chores.GetChoreById(id).then((info) => {
+      setChoreInfo(info);
+      console.warn('Im in here', info);
     });
   };
 

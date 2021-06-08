@@ -45,16 +45,26 @@ export default class ChoresForm extends React.Component {
 
     handleSubmit = (e) => {
       e.preventDefault();
-      if (this.state.id === '') {
-        const choreObject = {
-          name: this.state.name,
-          description: this.state.description,
-          choreId: this.state.choreId,
-          houseHoldId: this.state.houseHoldId,
-          category: this.state.categoryId,
-        };
+      const choreObject = {
+        Name: this.state.name,
+        Description: this.state.description,
+        Id: this.state.choreId,
+        HouseHoldId: this.state.houseHoldId,
+        Category: this.state.category,
+      };
+      if (this.state.choreId === '') {
+        choreData.addChore(choreObject).then(() => {
+          this.setState({ success: true });
+          setTimeout(() => {
+            this.props.history.push(`/chores/${this.state.choreId}`);
+          }, 3000);
+        });
+      } else {
+        choreData.updateChore(choreObject).then(() => {
+          this.setState({ success: true });
+          this.props.onUpdate();
+        });
       }
-      this.props.onUpdate();
       this.props.toggle();
     }
 
@@ -64,12 +74,24 @@ export default class ChoresForm extends React.Component {
             <div className='chore-form'>
             <Form style= {{ width: '75%' }} onSubmit={this.handleSubmit}>
                 <FormGroup>
-                    <Label>Title</Label>
-                    <Input value={this.props.choreInfo.name} type='text' name='name' onChange={this.handleChange}/>
+                    <Label>Name</Label>
+                    <Input placeholder='Enter a Chore Name'
+                           value={this.state.name}
+                           type='text'
+                           name='name'
+                           onChange={this.handleChange}
+                           className='form-control form-control-lg m-2 inputText'
+                           required/>
                 </FormGroup>
                 <FormGroup>
-                    <Label>Text</Label>
-                    <Input value = {this.props.choreInfo.description} type='textarea' name='description' onChange={this.handleChange}/>
+                    <Label>Description</Label>
+                    <Input placeholder='Enter a Chore Description'
+                           value={this.state.description}
+                           type='textarea'
+                           name='description'
+                           onChange={this.handleChange}
+                           className='form-control form-control-lg m-2 inputText'
+                           required/>
                 </FormGroup>
                 <FormGroup>
                 <Label>Category</Label>
