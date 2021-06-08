@@ -31,7 +31,7 @@ namespace HouseHoldApp.DataAccess
             {
                 using var db = new SqlConnection(ConnectionString);
                 var sql = "SELECT * FROM Images WHERE ChoreId = @Choreid";
-                var result = db.QueryFirstOrDefault<Images>(sql, new { Choreid = Choreid });
+                var result = db.QueryFirstOrDefault<Images>(sql, new { ChoreId = Choreid });
                 return result;
             }
 

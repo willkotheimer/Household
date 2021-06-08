@@ -3,6 +3,8 @@ import images from '../../helpers/data/imageData';
 import chores from '../../helpers/data/choresData';
 import ChoreImages from '../../Components/ChoresImages';
 import ChoreInfo from '../../Components/ChoreInfo';
+import AppModal from '../../Components/AppModal';
+import ChoreForm from '../../Components/Forms/ChoreForm';
 
 export default function ChoreDetailsView(props) {
   const [choreImages, setImages] = useState([]);
@@ -10,7 +12,6 @@ export default function ChoreDetailsView(props) {
   const { id } = props.match.params;
 
   useEffect(() => {
-    console.warn(id);
     images.getImagesByChoreId(id).then((img) => {
       setImages(img);
     });
@@ -19,11 +20,23 @@ export default function ChoreDetailsView(props) {
     });
   }, []);
 
+  const getChores = () => {
+    images.getImagesByChoreId(id).then((img) => {
+      setImages(img);
+    });
+    images.getImagesByChoreId(id).then((img) => {
+      setImages(img);
+    });
+  };
+
   return (
         <div className="ChoreDetails">
             Chore Details
             <ChoreImages choreImages={choreImages} />
             <ChoreInfo choreInfo={choreInfo} />
+            <AppModal choreInfo={choreInfo} choreImages={choreImages} title={'Edit Chore'} buttonLabel={'Edit Chore'}>
+               <ChoreForm choreInfo={choreInfo} choreImages={choreImages} onUpdate={getChores} />
+            </AppModal>
         </div>
   );
 }
