@@ -65,24 +65,24 @@ export default function CustomizedAccordions({ userAssignments, images }) {
           <Typography component={'span'} key={`typo1-${item}`}>Category: {item.categoryName}</Typography>
         </AccordionSummary>
         <AccordionDetails className="d-flex flex-wrap" key={`accordDetails-${item}`}>
-        <span key={`span-${item}`}>
-        <Typography>
-        { images[item.choreId] && <ImageSmall image={images[item.choreId].image} /> }
-        </Typography>
-        <Typography component={'span'} key={`typo2-${item}`}>
-        <span className='accordTitle'>Description:</span>
-        <div key={`div2-${item}`}>{item.chorename}</div>
-        <span className='accordTitle'>Instructions:</span>
-        <p className='accordDescription' key={`p-${item}`}>{item.choreDescription}</p>
-        </Typography>
-        </span>
-        <Typography component={'span'} key={`typo3-${item}`}>
-        <span className='accordTitle'>Assigned to:</span>
-        <div key={`div3-${item}`}>{(item.firstname) ? item.firstname : ' no one'}</div>
-        <span className='accordTitle'>Status:</span>
-        <p key={`p2-${item}`}>{(item.isCompleted) ? 'Complete' : 'Not Complete'}</p>
-        <Link to={{ pathname: `/chore/${item.choreId}` }}>Details</Link>
-        </Typography>
+          <span key={`span-${item}`}>
+            <Typography>
+              { images[item.choreId] && <ImageSmall image={images[item.choreId - 1].image} /> }
+            </Typography>
+            <Typography component={'span'} key={`typo2-${item}`}>
+              <span className='accordTitle'>Description:</span>
+              <div key={`div2-${item}`}>{item.chorename}</div>
+              <span className='accordTitle'>Instructions:</span>
+              <p className='accordDescription' key={`p-${item}`}>{item.choreDescription}</p>
+            </Typography>
+          </span>
+          <Typography component={'span'} key={`typo3-${item}`}>
+            <span className='accordTitle'>Assigned to:</span>
+            <div key={`div3-${item}`}>{(item.firstname) ? item.firstname : ' no one'}</div>
+            <span className='accordTitle'>Status:</span>
+            <p key={`p2-${item}`}>{(item.isCompleted) ? 'Complete' : 'Not Complete'}</p>
+            <Link to={{ pathname: `/chore/${item.choreId}` }}>Details</Link>
+          </Typography>
         </AccordionDetails>
       </Accordion>
     )));
