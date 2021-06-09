@@ -15,4 +15,11 @@ const getMainImageByChoreId = () => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default { getImagesByChoreId, getMainImageByChoreId };
+const addImage = (image) => new Promise((resolve, reject) => {
+  console.warn('diuhdauah', image);
+  axios.post(`${imageURL}`, image).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+export default { getImagesByChoreId, getMainImageByChoreId, addImage };

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import images from '../../helpers/data/imageData';
 import chores from '../../helpers/data/choresData';
-import ChoreImages from '../../Components/ChoresImages';
 import ChoreInfo from '../../Components/ChoreInfo';
 import AppModal from '../../Components/AppModal';
 import ChoreForm from '../../Components/Forms/ChoreForm';
+import Uploader from '../../Components/Forms/ImageUploader';
+import ChoreImages from '../../Components/ChoresImages';
 
 export default function ChoreDetailsView(props) {
   const [choreImages, setImages] = useState([]);
@@ -26,7 +27,6 @@ export default function ChoreDetailsView(props) {
     });
     chores.GetChoreById(id).then((info) => {
       setChoreInfo(info);
-      console.warn('Im in here', info);
     });
   };
 
@@ -34,6 +34,9 @@ export default function ChoreDetailsView(props) {
         <div className="ChoreDetails">
             Chore Details
             <ChoreImages choreImages={choreImages} />
+            <AppModal choreInfo={choreInfo} choreImages={choreImages} title={'Add Image'} buttonLabel={'Add Image'}>
+               <Uploader choreInfo={choreInfo} choreImages={choreImages} onUpdate={getChores} />
+            </AppModal>
             <ChoreInfo choreInfo={choreInfo} />
             <AppModal choreInfo={choreInfo} choreImages={choreImages} title={'Edit Chore'} buttonLabel={'Edit Chore'}>
                <ChoreForm choreInfo={choreInfo} choreImages={choreImages} onUpdate={getChores} />

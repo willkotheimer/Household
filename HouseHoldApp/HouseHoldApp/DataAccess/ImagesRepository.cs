@@ -48,7 +48,7 @@ namespace HouseHoldApp.DataAccess
                 using var db = new SqlConnection(ConnectionString);
                 var sql = $@"INSERT INTO Images(Image,ChoreId,Active) 
                         OUTPUT inserted.id
-                        VALUES(@Image,@ChoreId,1);";
+                        VALUES(@Image,@ChoreId,@Active);";
                 var id = db.ExecuteScalar<int>(sql, image);
                 image.Id = id;
             }

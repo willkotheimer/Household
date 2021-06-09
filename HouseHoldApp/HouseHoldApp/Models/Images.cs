@@ -10,6 +10,6 @@ namespace HouseHoldApp.Models
         public int Id { get; set; }
         public string Image { get; set; }
         public int ChoreId { get; set; }
-        public Boolean Active { get; set; }
+        public int Active { get; set; }
     }
 }
