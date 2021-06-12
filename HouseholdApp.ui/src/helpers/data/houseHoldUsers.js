@@ -9,4 +9,10 @@ const getUsersHousehold = (uID) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default getUsersHousehold;
+const getHousehold = (uID) => new Promise((resolve, reject) => {
+  axios.get(`${householdURL}/GetHouseId/${uID}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+export default { getUsersHousehold, getHousehold };

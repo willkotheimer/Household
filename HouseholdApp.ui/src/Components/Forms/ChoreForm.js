@@ -8,20 +8,25 @@ import {
 } from 'reactstrap';
 import choreData from '../../helpers/data/choresData';
 import categoryData from '../../helpers/data/categoryData';
+import householdData from '../../helpers/data/houseHoldUsers';
 
 export default class ChoresForm extends React.Component {
     state = {
-      name: this.props.choreInfo.name || '',
-      description: this.props.choreInfo.description || '',
-      houseHoldId: this.props.choreInfo.houseHoldId || '',
-      choreId: this.props.choreInfo.id || '',
-      category: this.props.choreInfo.category || '',
+      name: this.props.choreInfo?.name || '',
+      description: this.props.choreInfo?.description || '',
+      houseHoldId: this.props.choreInfo?.houseHoldId || '',
+      choreId: this.props.choreInfo?.id || '',
+      category: this.props.choreInfo?.category || '',
       allCategories: [],
     }
 
     async componentDidMount() {
-      await categoryData.getAllCategories().then((categories) => {
-        this.setState({ allCategories: categories });
+      await categoryData.getAllCategories().then((allCategories) => {
+        this.setState({ allCategories });
+      });
+      console.warn(this.props.uid);
+      await householdData.getHousehold(this.props.uid).then((resp) => {
+        this.setState({ houseHoldId: resp.householdId });
       });
     }
 
@@ -45,21 +50,27 @@ export default class ChoresForm extends React.Component {
 
     handleSubmit = (e) => {
       e.preventDefault();
-      const choreObject = {
-        Name: this.state.name,
-        Description: this.state.description,
-        Id: this.state.choreId,
-        HouseHoldId: this.state.houseHoldId,
-        Category: this.state.category,
-      };
       if (this.state.choreId === '') {
+        const choreObject = {
+          Name: this.state.name,
+          Description: this.state.description,
+          HouseHoldId: this.state.houseHoldId,
+          Category: parseInt(this.state.category, 10),
+        };
         choreData.addChore(choreObject).then(() => {
           this.setState({ success: true });
           setTimeout(() => {
-            this.props.history.push(`/chores/${this.state.choreId}`);
+            // going to update here
           }, 3000);
         });
       } else {
+        const choreObject = {
+          Name: this.state.name,
+          Description: this.state.description,
+          Id: this.state.choreId,
+          HouseHoldId: this.state.houseHoldId,
+          Category: parseInt(this.state.category, 10),
+        };
         choreData.updateChore(choreObject).then(() => {
           this.setState({ success: true });
           this.props.onUpdate();
@@ -95,7 +106,7 @@ export default class ChoresForm extends React.Component {
                 </FormGroup>
                 <FormGroup>
                 <Label>Category</Label>
-                 <select name='CategoryId' onChange={this.handleChange} >
+                 <select name='category' onChange={this.handleChange} >
                     {this.state.allCategories.sort(this.compare).map((category) => (<option key={category.id} value={category.id} selected={this.state.category == category.id}>{category.categoryName}</option>))}
                   </select>
                 </FormGroup>

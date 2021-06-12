@@ -38,9 +38,9 @@ namespace HouseHoldApp.DataAccess
         public void AddAChore(Chores chore)
         {
             using var db = new SqlConnection(ConnectionString);
-            var sql = $@"INSERT INTO Chores(Name,Category,Description) 
+            var sql = $@"INSERT INTO Chores(Name,Category,Description, HouseHoldId) 
                         OUTPUT inserted.id
-                        VALUES(@Name,@Category,@Description);";
+                        VALUES(@Name,@Category,@Description,@HouseHoldId);";
             var id = db.ExecuteScalar<int>(sql, chore);
             chore.Id = id;
         }
