@@ -53,13 +53,13 @@ namespace HouseHoldApp.DataAccess
                 image.Id = id;
             }
   
-            public void InactivateImage(int id)
+            public void DeleteImage(int id)
             {
                 using var db = new SqlConnection(ConnectionString);
-                var sql = $@"UPDATE Images SET
-                         Active=0
-                         WHERE Id=@id";
-                db.Execute(sql, new { Id = id });
+                var parameters = new DynamicParameters();
+                parameters.Add("Id", id);
+                var sql = $@"Delete FROM Images WHERE Id=@id";
+                db.ExecuteAsync(sql, parameters);
             }
         }
     }

@@ -30,10 +30,16 @@ export default function ChoreDetailsView(props) {
     });
   };
 
+  const deleteImage = (imageId, imageUrl) => {
+    deleteImage(imageId, imageUrl).then(() => {
+      getChores();
+    });
+  };
+
   return (
         <div className="ChoreDetails">
             Chore Details
-            <ChoreImages choreImages={choreImages} />
+            <ChoreImages choreImages={choreImages} onUpdate={getChores} deleteImage={deleteImage} />
             <AppModal choreInfo={choreInfo} choreImages={choreImages} title={'Add Image'} buttonLabel={'Add Image'}>
                <Uploader choreInfo={choreInfo} choreImages={choreImages} onUpdate={getChores} />
             </AppModal>

@@ -16,24 +16,20 @@ export default class Uploader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Images: [],
       ChoreId: this.props.choreInfo.id,
       Active: 1,
-      Image: [],
+      FormImages: [],
     };
     this.onDrop = this.onDrop.bind(this);
   }
 
   onDrop(picture) {
-    this.setState({
-      Images: this.state.Images.concat(picture),
-    });
     picture.forEach((pic) => {
       const storageRef = firebase.storage().ref();
       const imageRef = storageRef.child(`household-app/${this.state.ChoreId}/${Date.now()}${pic.name}`);
       imageRef.put(pic).then((snapshot) => {
         snapshot.ref.getDownloadURL().then((img_url) => {
-          this.setState({ Image: [...this.state.Image, img_url] });
+          this.setState({ FormImages: [...this.state.FormImages, img_url] });
         });
       });
     });
@@ -41,8 +37,7 @@ export default class Uploader extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.warn(this.state.Image);
-    this.state.Image.forEach((image) => {
+    this.state.FormImages.forEach((image) => {
       const makeImageObject = {
         ChoreId: this.state.ChoreId,
         Active: this.state.Active,

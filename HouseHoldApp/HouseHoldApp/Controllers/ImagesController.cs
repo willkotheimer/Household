@@ -48,11 +48,11 @@ namespace HouseHoldApp.Controllers
             return Created($"api/Images/{image.Id}", image);
         }
 
-        [HttpPatch("{id}")]
-        public IActionResult InactivateAnImage(int id)
+        [HttpDelete("{imageId}")]
+        public IActionResult DeleteImage(int imageId)
         {
-            _repo.InactivateImage(id);
-            return NoContent();
+            _repo.DeleteImage(imageId);
+            return Ok(200);
         }
     }
 }

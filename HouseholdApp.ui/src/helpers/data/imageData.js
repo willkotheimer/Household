@@ -1,4 +1,5 @@
 import axios from 'axios';
+import firebase from 'firebase';
 import { baseUrl } from '../config.json';
 
 const imageURL = `${baseUrl}/Images`;
@@ -16,10 +17,30 @@ const getMainImageByChoreId = () => new Promise((resolve, reject) => {
 });
 
 const addImage = (image) => new Promise((resolve, reject) => {
-  console.warn('diuhdauah', image);
   axios.post(`${imageURL}`, image).then((response) => {
     resolve(response.data);
   }).catch((error) => reject(error));
 });
 
-export default { getImagesByChoreId, getMainImageByChoreId, addImage };
+const deleteFromFirebase = (url) => {
+  console.warn(url);
+  const pictureRef = firebase.storage().refFromURL(url);
+  pictureRef.delete()
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const deleteImage = (imageId, imagelink) => new Promise((resolve, reject) => {
+  deleteFromFirebase(imagelink);
+  axios.delete(`${imageURL}/${imageId}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
+export default {
+  getImagesByChoreId,
+  getMainImageByChoreId,
+  addImage,
+  deleteImage,
+};
