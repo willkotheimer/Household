@@ -26,6 +26,16 @@ namespace HouseHoldApp.DataAccess
             return result;
         }
 
+        public HouseholdUserId GetHouseHoldIdUserId(string id)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @$"SELECT hhu.HouseholdId as HouseholdId FROM HouseholdUser hhu
+                         JOIN Users u on u.Id=hhu.UserId
+                         WHERE u.FirebaseKey = @id AND hhu.isConfirmed=1";
+            var result = db.QueryFirstOrDefault<HouseholdUserId>(sql, new { Id = id });
+            return result;
+        }
+
         public List<UserHousehold> GetUsersInUsersHouseHold(string id)
         {
             using var db = new SqlConnection(ConnectionString);

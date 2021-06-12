@@ -13,4 +13,9 @@ namespace HouseHoldApp.Models
         public bool IsConfirmed { get; set; }
 
     }
+
+    public class HouseholdUserId
+    {
+        public int HouseholdId { get; set; }
+    }
 }

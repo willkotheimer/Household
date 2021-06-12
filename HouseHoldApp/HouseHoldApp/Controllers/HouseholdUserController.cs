@@ -32,6 +32,20 @@ namespace HouseHoldApp.Controllers
             return Ok(usersInHousehold);
         }
 
+        [HttpGet("GetHouseId/{id}")]
+        public IActionResult GetHouseHoldIdUserId(string id)
+        {
+            var householdId = _repo.GetHouseHoldIdUserId(id);
+
+            if (householdId == null)
+            {
+                return NotFound("This User does not belong to any households");
+            }
+            return Ok(householdId);
+        }
+
+
+
         [HttpGet("user/{id}")]
         public IActionResult GetHouseholdUserByUserId(int id)
         {
