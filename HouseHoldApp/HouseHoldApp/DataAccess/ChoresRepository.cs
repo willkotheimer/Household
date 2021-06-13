@@ -27,11 +27,11 @@ namespace HouseHoldApp.DataAccess
             return result;
         }
 
-        public Chores GetChoreByHouseholdId(int id)
+        public List<Chores> GetChoreByHouseholdId(int id)
         {
             using var db = new SqlConnection(ConnectionString);
             var sql = "SELECT * FROM Chores WHERE HouseHoldId = @id";
-            var result = db.QueryFirstOrDefault<Chores>(sql, new { Id = id });
+            var result = db.Query<Chores>(sql, new { Id = id }).ToList();
             return result;
         }
 
