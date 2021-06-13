@@ -1,0 +1,18 @@
+div.splash.container div > div > img {
+    float: left;
+    width:  200px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 7px;
+}
+
+.splash {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.splash-title > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

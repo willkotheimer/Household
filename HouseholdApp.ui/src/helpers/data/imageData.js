@@ -4,6 +4,12 @@ import { baseUrl } from '../config.json';
 
 const imageURL = `${baseUrl}/Images`;
 
+const getImages = () => new Promise((resolve, reject) => {
+  axios.get(`${imageURL}`).then((response) => {
+    resolve(response.data);
+  }).catch((error) => reject(error));
+});
+
 const getImagesByChoreId = (choreId) => new Promise((resolve, reject) => {
   axios.get(`${imageURL}/${choreId}`).then((response) => {
     resolve(response.data);
@@ -43,4 +49,5 @@ export default {
   getMainImageByChoreId,
   addImage,
   deleteImage,
+  getImages,
 };

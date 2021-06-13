@@ -14,12 +14,6 @@ export default function Nav(props) {
           <Link to="/assignchores" className="navbar-item">
             Assign Chores
           </Link>
-          <Link to="/stats" className="navbar-item">
-            Stats
-          </Link>
-          <Link to="/inspireme" className="navbar-item">
-            Inspire Me
-          </Link>
           <Link to="/householdDashboard" className="navbar-item">
             Household Dashboard
           </Link>
