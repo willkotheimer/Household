@@ -13,10 +13,11 @@ export default function Routes({
   authed,
   uid,
   userHousehold,
+  householdId,
 }) {
   return (
         <Switch>
-            <Route exact path='/assignchores' component={(props) => <AssignChores props={props} user={user} />}/>
+            <Route exact path='/assignchores' component={(props) => <AssignChores props={props} user={user} user={user} uid={uid} householdId={householdId} userHousehold={userHousehold} />}/>
             <Route exact path='/stats' component={(props) => <Stats props={props} user={user} />}/>
             <Route exact path='/inspireme' component={(props) => <InspireMe props={props} user={user} />}/>
             <Route exact path='/householdDashboard' component={(props) => <CreateHouseholdView props={props} user={user} uid={uid} userHousehold={userHousehold} />}/>
