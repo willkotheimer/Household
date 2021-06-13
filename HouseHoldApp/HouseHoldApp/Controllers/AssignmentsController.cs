@@ -60,6 +60,12 @@ namespace HouseHoldApp.Controllers
             return NoContent();
         }
 
+        [HttpPatch("done")]
+        public IActionResult MarkAssignmentDone(Assignments assignment)
+        {
+            _repo.SetAssignmentDone(assignment);
+            return NoContent();
+        }
     }
 }
 

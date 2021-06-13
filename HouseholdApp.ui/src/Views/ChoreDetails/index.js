@@ -45,7 +45,7 @@ export default function ChoreDetailsView(props) {
             </AppModal>
             <ChoreInfo choreInfo={choreInfo} />
             <AppModal choreInfo={choreInfo} choreImages={choreImages} title={'Edit Chore'} buttonLabel={'Edit Chore'}>
-               <ChoreForm choreInfo={choreInfo} choreImages={choreImages} onUpdate={getChores} />
+               <ChoreForm choreInfo={choreInfo} choreImages={choreImages} onUpdate={getChores}/>
             </AppModal>
         </div>
   );

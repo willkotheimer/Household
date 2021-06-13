@@ -46,6 +46,19 @@ namespace HouseHoldApp.DataAccess
             assignment.Id = id;
         }
 
+        public void SetAssignmentDone(Assignments assignment)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = $@"UPDATE Assignments SET
+                         UserId=@UserId,
+                         Week=@Week,
+                         IsCompleted=1,
+                         Rating = @Rating,
+                         ChoreId = @ChoreId
+                         WHERE Id= @id";
+            db.Execute(sql, assignment);
+        }
+
         public void UpdateAssignment(Assignments assignment)
         {
             using var db = new SqlConnection(ConnectionString);
