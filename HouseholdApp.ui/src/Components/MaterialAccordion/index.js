@@ -52,7 +52,7 @@ const AccordionDetails = withStyles((theme) => ({
   },
 }))(MuiAccordionDetails);
 
-export default function CustomizedAccordions({ userAssignments, images }) {
+export default function CustomizedAccordions({ userAssignments, images, completeTask }) {
   const [expanded, setExpanded] = React.useState('panel1');
 
   useEffect(() => {
@@ -79,10 +79,13 @@ export default function CustomizedAccordions({ userAssignments, images }) {
           <Typography component={'span'} key={`typo3-${item}`}>
             <span className='accordTitle'>Assigned to:</span>
             <div key={`div3-${item}`}>{(item.firstname) ? item.firstname : ' no one'}</div>
+            <span className='accordTitle'>Week:</span>
+            <p key={`p2-${item}`}>{item.week}</p>
             <span className='accordTitle'>Status:</span>
             <p key={`p2-${item}`}>{(item.isCompleted) ? 'Complete' : 'Not Complete'}</p>
             <Link to={{ pathname: `/chore/${item.choreId}` }}>Details</Link>
           </Typography>
+          { (!item.isCompleted) && <button className="completeButton" onClick={() => completeTask(item)}>Complete Task</button>}
         </AccordionDetails>
       </Accordion>
     )));
