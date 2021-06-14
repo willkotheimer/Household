@@ -107,7 +107,8 @@ export default class ChoresForm extends React.Component {
                 <FormGroup>
                 <Label>Category</Label>
                  <select name='category' onChange={this.handleChange} >
-                    {this.state.allCategories.sort(this.compare).map((category) => (<option key={category.id} value={category.id} selected={this.state.category == category.id}>{category.categoryName}</option>))}
+                    {this.state.allCategories.sort(this.compare)
+                      .map((category) => (<option key={category.id} value={category.id} selected={this.state.category === category.id}>{category.categoryName}</option>))}
                   </select>
                 </FormGroup>
                 <br/>
