@@ -29,7 +29,6 @@ const addImage = (image) => new Promise((resolve, reject) => {
 });
 
 const deleteFromFirebase = (url) => {
-  console.warn(url);
   const pictureRef = firebase.storage().refFromURL(url);
   pictureRef.delete()
     .catch((err) => {

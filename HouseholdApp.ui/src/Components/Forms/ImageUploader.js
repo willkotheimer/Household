@@ -6,9 +6,8 @@ import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import {
-  Button, Form, FormGroup, Label, Input,
+  Button, Form,
 } from 'reactstrap';
-import { __RouterContext } from 'react-router';
 import ImageUploader from 'react-images-upload';
 import Img from '../../helpers/data/imageData';
 

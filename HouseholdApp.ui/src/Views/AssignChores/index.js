@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import AppModal from '../../Components/AppModal';
 import ChoreForm from '../../Components/Forms/ChoreForm';
-import user from '../../helpers/data/authData';
 import AssignmentForm from '../../Components/Forms/AssignmentForm';
 
 export default function AssignChoresView({ uid, userHousehold, householdId }) {
@@ -11,7 +10,15 @@ export default function AssignChoresView({ uid, userHousehold, householdId }) {
             <AppModal title={'Add Chore'} buttonLabel={'Add Chore'}>
                <ChoreForm uid={uid} />
             </AppModal>
-            <AssignmentForm householdId={householdId} userHousehold={userHousehold} uid={uid} />
+            {userHousehold[0]
+            && userHousehold[0].map((person, index) => (
+                <>
+                <div>{person.firstname}</div>
+                <AppModal title={'Add Chore'} buttonLabel={`${person.firstname}'s Chores`}>
+                <AssignmentForm householdId={householdId} key={index} person={person} uid={uid} />
+                </AppModal>
+                </>
+            ))}
         </div>
   );
 }

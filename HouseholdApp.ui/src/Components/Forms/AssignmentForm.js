@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import {
-  Button, Form, FormGroup, Label, Input,
+  Form, Button,
 } from 'reactstrap';
 import householdData from '../../helpers/data/houseHoldUsers';
 import choreData from '../../helpers/data/choresData';
+import assignment from '../../helpers/data/assignmentData';
 import Week from '../../helpers/data/weekNum';
 
 export default class AssignmentForm extends React.Component {
@@ -32,50 +33,47 @@ export default class AssignmentForm extends React.Component {
     });
   }
 
-  changeHandler = (value, e) => {
-    console.warn(value, e.id);
-    /* const myAssignment = {
-      userId: allthethings.name.id,
-      week: this.state.week,
-      isCompleted: false,
-      rating: 0,
-      choreId: e[0].value,
-    };
-    const prevAssignments = this.state.assignments; */
-    const difference = this.state.selected.filter((x) => !value.includes(x)); // calculates diff
-    console.log('Removed: ', difference); // prints array of removed
+  changeHandler = (value) => {
+    console.warn(value);
     this.setState({ selected: value });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.value);
+    this.state.selected.map((item) => {
+      const myAssignment = {
+        userId: this.props.person.id,
+        week: this.state.week,
+        isCompleted: false,
+        rating: 0,
+        choreId: item.value,
+      };
+      // assignment.createAssignment(myAssignment);
+      console.warn(myAssignment);
+    });
   };
 
   render() {
     const { useSelection, week } = this.state;
-    const MyComponent = ({ person }) => (
+    const SelectChore = ({ person }) => (
       <Select name={person}
-              className="mt-4 col-md-6 col-offset-4"
+              className="assignForm"
               components={makeAnimated()}
               options={useSelection}
-              onChange={(e, things) => this.changeHandler(e, things)}
+              onChange={(e) => this.changeHandler(e)}
               value={this.state.selected}
+              key={person}
               isMulti />
     );
 
     return (
           <>
           <div className='assignment-form'>
-          <h1>Chores for Week {week} </h1>
+          <h1>{ this.props.person.firstname } Chores <br/>for Week {week} user={this.props.person.userId} </h1>
           <Form style= {{ width: '75%' }} onSubmit={(e) => this.handleSubmit(e)}>
-            {this.props.userHousehold[0]
-            && this.props.userHousehold[0].map((person, index) => (
-                <>
-                <div>{person.firstname}</div>
-                <MyComponent person={person} key={index} />
-                </>
-            ))}
+                <SelectChore person={this.props.person} key={`AssignForm-${this.props.index}`} />
+                <br/>
+                <Button className='mt-3'>Submit</Button>
           </Form>
           </div>
           </>

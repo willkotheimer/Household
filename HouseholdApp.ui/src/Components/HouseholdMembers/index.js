@@ -2,22 +2,22 @@ import React, { useState, useEffect } from 'react';
 import CustomizedAccordions from '../MaterialAccordion';
 import assignments from '../../helpers/data/assignmentData';
 import images from '../../helpers/data/imageData';
-import ChoreForm from '../Forms/ChoreForm';
+import week from '../../helpers/data/weekNum';
 
 export default function AddHouseholdMembers({ uid }) {
   const [assignmentsUsers, setAssignmentsUsers] = useState([]);
   const [imageArray, setImages] = useState([]);
 
-  useEffect(() => update(), []);
-
   const update = () => {
     assignments.getAssignmentsByHouseholdFromUserId(uid).then((resp) => {
-      setAssignmentsUsers(resp);
+      setAssignmentsUsers(resp.filter((x) => x.week === parseInt(week.thisWeek(), 10)));
       images.getMainImageByChoreId().then((img) => {
         setImages(img);
       });
     });
   };
+
+  useEffect(() => update(), []);
 
   const completeTask = (assignment) => {
     console.warn(assignment);

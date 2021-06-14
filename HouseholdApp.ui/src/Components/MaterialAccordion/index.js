@@ -6,7 +6,6 @@ import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ImageSmall from '../ImageSmall';
-import getImagesByChoreId from '../../helpers/data/imageData';
 
 const Accordion = withStyles({
   root: {
@@ -82,7 +81,7 @@ export default function CustomizedAccordions({ userAssignments, images, complete
             <span className='accordTitle'>Week:</span>
             <p key={`p2-${item}`}>{item.week}</p>
             <span className='accordTitle'>Status:</span>
-            <p key={`p2-${item}`}>{(item.isCompleted) ? 'Complete' : 'Not Complete'}</p>
+            <p key={`p3-${item}`}>{(item.isCompleted) ? 'Complete' : 'Not Complete'}</p>
             <Link to={{ pathname: `/chore/${item.choreId}` }}>Details</Link>
           </Typography>
           { (!item.isCompleted) && <button className="completeButton" onClick={() => completeTask(item)}>Complete Task</button>}
