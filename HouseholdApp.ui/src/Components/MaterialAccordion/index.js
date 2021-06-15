@@ -61,7 +61,8 @@ export default function CustomizedAccordions({ userAssignments, images, complete
     [...userAssignments].map((item, index) => (
         <Accordion key={`accord${item}-${index}`} square expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
         <AccordionSummary key={`accordsummary${item}`} aria-controls="paneld-content" id="panelheader">
-          <Typography component={'span'} key={`typo1-${item}`}>Category: {item.categoryName}</Typography>
+          <Typography component={'span'} key={`typo1-${item}`}><span className="catTitle">{item.categoryName}</span> <span className="choretitle">{item.chorename}</span> <span className="nameTitle">Assigned to: { item.firstname } {item.isCompleted ? 'Completed' : 'Not Completed'}</span></Typography>
+          {console.warn(item)}
         </AccordionSummary>
         <AccordionDetails className="d-flex flex-wrap" key={`accordDetails-${item}`}>
           <span key={`span-${item}`}>

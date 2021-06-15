@@ -48,8 +48,11 @@ export default class AssignmentForm extends React.Component {
         rating: 0,
         choreId: item.value,
       };
-      // assignment.createAssignment(myAssignment);
       console.warn(myAssignment);
+      assignment.createAssignment(myAssignment).then(() => {
+        this.setState({ success: true });
+      });
+      this.props.toggle();
     });
   };
 
@@ -69,9 +72,9 @@ export default class AssignmentForm extends React.Component {
     return (
           <>
           <div className='assignment-form'>
-          <h1>{ this.props.person.firstname } Chores <br/>for Week {week} user={this.props.person.userId} </h1>
+          <h1>{ this.props.person.firstname } Chores <br/>for Week {week} </h1>
           <Form style= {{ width: '75%' }} onSubmit={(e) => this.handleSubmit(e)}>
-                <SelectChore person={this.props.person} key={`AssignForm-${this.props.index}`} />
+                <SelectChore person={this.props.person} key={`AssignChore-${this.props.person}-${this.props.index}`} />
                 <br/>
                 <Button className='mt-3'>Submit</Button>
           </Form>

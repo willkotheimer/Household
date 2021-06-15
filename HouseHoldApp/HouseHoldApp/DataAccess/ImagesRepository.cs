@@ -56,10 +56,8 @@ namespace HouseHoldApp.DataAccess
             public void DeleteImage(int id)
             {
                 using var db = new SqlConnection(ConnectionString);
-                var parameters = new DynamicParameters();
-                parameters.Add("Id", id);
                 var sql = $@"Delete FROM Images WHERE Id=@id";
-                db.ExecuteAsync(sql, parameters);
+                db.Execute(sql, new { id });
             }
         }
     }

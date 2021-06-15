@@ -57,10 +57,12 @@ export default class Uploader extends React.Component {
             <Form style= {{ width: '75%' }} onSubmit={(e) => this.handleSubmit(e)}>
                <ImageUploader
                    withIcon={true}
+                   withPreview={true}
                    buttonText='Choose images'
                    onChange={this.onDrop}
                    imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                   maxFileSize={5242880}
+                   maxFileSize={10485760}
+                   fileSizeError={'file size is too big'}
                />
                <Button className='mt-3'>Submit</Button>
            </Form>

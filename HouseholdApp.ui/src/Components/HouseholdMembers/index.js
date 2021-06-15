@@ -35,7 +35,7 @@ export default function AddHouseholdMembers({ uid }) {
   };
 
   return (
-     <div className='d-flex'>
+     <div>
          <span><h1>Household Chores</h1>
             <span>
              </span>

@@ -13,12 +13,14 @@ export default function ChoreDetailsView(props) {
   const { id } = props.match.params;
 
   useEffect(() => {
+    let isMounted = true;
     images.getImagesByChoreId(id).then((img) => {
       setImages(img);
     });
     chores.GetChoreById(id).then((chore) => {
       setChoreInfo(chore);
     });
+    return () => { isMounted = false; };
   }, []);
 
   const getChores = () => {
