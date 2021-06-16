@@ -5,3 +5,39 @@
     padding-left: 15%;
 }
 
+.unassignedContainer {
+    margin-top: 12px;
+    border: 1 px solid #000;
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    
+    .unassigned {
+        font-weight: bold;
+        background-color: palevioletred;
+        border-radius: 25px;
+        padding: .2em;
+        margin: .1em
+      }
+
+    
+    
+}
+
+.myAssignedContainer {
+    margin-top: 12px;
+    border: 1 px solid #000;
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    .assignedtome {
+        font-weight: bold;
+        background-color: lightblue;
+        border-radius: 25px;
+        padding: .2em;
+        margin: .1em
+      }
+
+}
+
+
