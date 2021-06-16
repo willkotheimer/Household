@@ -42,7 +42,7 @@ export default function AssignChoresView({ uid, userHousehold, householdId }) {
                 <>
                 <div>{person.firstname}</div>
                 <AppModal title={'Add Chore'} key={`modal-${index}`} buttonLabel={`${person.firstname}'s Chores`}>
-                <AssignmentForm householdId={householdId} key={`assignForm-${index}`} person={person} uid={uid} />
+                <AssignmentForm userHousehold={userHousehold} householdId={householdId} key={`assignForm-${index}`} person={person} uid={uid} />
                 </AppModal>
                 </>
             ))}

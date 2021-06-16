@@ -22,7 +22,7 @@ export default function SplashPage(props) {
       <Row>
         <Col className="col-3">{picArray && <img alt='organized house' src={picArray[4].image} />}</Col>
         <Col className="splash-title col-6"><div>
-          <h5>HOUSEHOLD</h5><div><button>Check Your Chores</button></div></div>
+          <h5>HOUSEHOLD</h5><div><button>See Your Chores=</button></div></div>
         </Col>
         <Col className="col-3">{picArray && <img alt='organized house' src={picArray[5].image} />}</Col>
       </Row>
