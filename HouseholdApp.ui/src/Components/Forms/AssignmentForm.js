@@ -4,7 +4,6 @@ import makeAnimated from 'react-select/animated';
 import {
   Form, Button,
 } from 'reactstrap';
-import householdData from '../../helpers/data/houseHoldUsers';
 import choreData from '../../helpers/data/choresData';
 import assignment from '../../helpers/data/assignmentData';
 import Week from '../../helpers/data/weekNum';
@@ -27,19 +26,15 @@ export default class AssignmentForm extends React.Component {
   componentDidMount() {
     assignment.getAssignmentsByHouseholdFromUserId(this.props.person.id).then((resp) => {
       this.setState({ assignments: resp });
+      console.warn(resp);
     });
-    choreData.getChoresByHousehold(this.props.householdId).then((options) => {
+    choreData.getUnassignedChoresByWeekAndHouseHold(Week.thisWeek(), this.props.householdId).then((options) => {
       const myarr = [];
       options.forEach((op) => {
         myarr.push({ value: op.id, label: op.name });
       });
-      this.setState({ chores: options });
-      myarr.filter((item) => !this.state.used.includes(item.value));
-      this.setState({ useSelection: myarr });
+      this.setState({ chores: options, useSelection: myarr, unassigned: options });
     });
-    const unassign = this.state.chores.filter((chore) => chore.id !== assignment.choreId);
-    console.warn(unassign);
-    this.setState({ unassigned: unassign });
   }
 
   changeHandler = (value) => {
@@ -66,7 +61,7 @@ export default class AssignmentForm extends React.Component {
   };
 
   render() {
-    const { useSelection, week } = this.state;
+    const { useSelection, week, unassigned } = this.state;
     const SelectChore = ({ person }) => (
       <Select name={person}
               className="assignForm"
@@ -74,7 +69,7 @@ export default class AssignmentForm extends React.Component {
               options={useSelection}
               onChange={(e) => this.changeHandler(e)}
               value={this.state.selected}
-              key={person}
+              key={person.name}
               isMulti />
     );
 
@@ -86,33 +81,14 @@ export default class AssignmentForm extends React.Component {
       return myarr;
     };
 
-    const FilterNonAssigned = () => {
-      const arr2 = this.state.chores;
-      const arr = this.state.assignments;
-      const household = myHouseHold();
-      const filteredByThisWeek = arr.filter((a) => a.week == Week.thisWeek());
-      // should probably do a left join table to get unassigned chores
-      const notassigned = arr2.filter((c) => filteredByThisWeek.includes(c.id));
-      console.warn(notassigned);
-      // const res = this.state.chores.filter((chore) => arr2.choreId !== chore.id);
-      /* res.map((c) => (
-        <>
-        <span className="unassigned">{c.name}</span>
-        </>
-      )); */
-    };
-
     const FilterAllMine = () => {
       const arr = this.state.assignments;
       const filteredByThisWeek = arr.filter((a) => a.week == Week.thisWeek());
-      const myassign = filteredByThisWeek.filter((a) => a.firstname == this.props.person.firstname);
-      myHouseHold();
-      return myassign.map((c) => (
-        <>
-        <span className="assignedtome">{c.chorename}</span>
-        </>
-      ));
+      const myassign = filteredByThisWeek.filter((a) => a.userId == this.props.person.id);
+      return myassign.map((c, i) => (<span key={`AllMine-${c.name}-${i}`} className="assignedtome">{c.chorename}</span>));
     };
+
+    const NonAssignedChores = () => unassigned.map((c, i) => (<span key={`Nonassigned${i}--${c.name}`} className="assignedtonoone">{c.name}</span>));
 
     return (
           <>
@@ -122,9 +98,11 @@ export default class AssignmentForm extends React.Component {
                 <SelectChore person={this.props.person} key={`AssignChore-${this.props.person}-${this.props.uid}`} />
                 <br/>
                 <Button className='mt-3'>Submit</Button>
-                <div className="myAssignedContainer">{ this.state.assignments && <FilterAllMine /> }</div>
-                <div className="unassignedContainer">{ FilterNonAssigned() /* this.state.assignments && <FilterNonAssigned /> */ }</div>
           </Form>
+                <div className="assigntitle">Assigned to me: </div>
+                <div className="myAssignedContainer">{ this.state.assignments && <FilterAllMine /> }</div>
+                <div className="assigntitle">Not assigned yet: </div>
+                <div className="unassignedContainer">{ unassigned && (<NonAssignedChores />) }</div>
           </div>
           </>
     );

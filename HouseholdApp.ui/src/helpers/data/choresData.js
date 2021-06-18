@@ -9,6 +9,13 @@ const getChoresByHousehold = (id) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+const getUnassignedChoresByWeekAndHouseHold = (week, householdId) => new Promise((resolve, reject) => {
+  axios.get(`${choresURL}/household/${householdId}/${week}/unassigned`).then((response) => {
+    // console.warn(response.data);
+    resolve(response.data);
+  });
+});
+
 const GetChoreById = (choreId) => new Promise((resolve, reject) => {
   axios.get(`${choresURL}/${choreId}`).then((response) => {
     resolve(response.data);
@@ -33,4 +40,5 @@ export default {
   addChore,
   updateChore,
   GetChoreById,
+  getUnassignedChoresByWeekAndHouseHold,
 };

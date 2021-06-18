@@ -11,38 +11,18 @@ export default function AssignChoresView({ uid, userHousehold, householdId }) {
   const [chores, setChores] = useState([]);
   const [assignments, setAssignments] = useState([]);
   const [choresLeft, setChoresLeft] = useState([]);
-
-  const update = () => {
-    console.warn(Promise.all([getAssignments, getChores]));
-    /*
-    Assignment.getAssignmentsByHouseholdFromUserId(uid).then((resp) => {
-      setAssignments(resp.filter((x) => x.week === parseInt(week.thisWeek(), 10)));
-    });
-    Chore.getChoresByHousehold(householdId).then((resp) => {
-      setChores(resp);
-    });
-    const leftchores = chores.filter((chore) => (chore.id != assignments.choreId));
-    setChoresLeft(leftchores); */
-  };
-  const getAssignments = () => Assignment.getAssignmentsByHouseholdFromUserId(uid);
-  const getChores = () => Chore.getChoresByHousehold(householdId);
-  update();
-  // useEffect(() => update(), [assignments]); */
-
   return (
         <div className="assignChores">
-            Assign Chores Page
-            { // this.state.choresLeft && <ChoresLeft chores={this.state.choresLeft} />
-}
-            <AppModal title={'Add Chore'} buttonLabel={'Add Chore'}>
-               <ChoreForm uid={uid} />
+            Assign Chores Page}
+            <AppModal key={'addChore'} title={'Add Chore'} buttonLabel={'Add Chore'}>
+               <ChoreForm key={'choreform'} uid={uid} />
             </AppModal>
             {userHousehold[0]
             && userHousehold[0].map((person, index) => (
                 <>
-                <div>{person.firstname}</div>
+                <div key={`container${index}`}>{person.firstname}</div>
                 <AppModal title={'Add Chore'} key={`modal-${index}`} buttonLabel={`${person.firstname}'s Chores`}>
-                <AssignmentForm userHousehold={userHousehold} householdId={householdId} key={`assignForm-${index}`} person={person} uid={uid} />
+                <AssignmentForm userHousehold={userHousehold} householdId={householdId} key={`assignForm-${person.firstname}`} person={person} uid={uid} />
                 </AppModal>
                 </>
             ))}

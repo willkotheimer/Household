@@ -24,7 +24,7 @@ namespace HouseHoldApp.DataAccess
             JOIN HouseholdUser hu on hu.UserId = u.Id 
             WHERE hu.HouseholdId=(SELECT hu.HouseholdId FROM [Users] u
             JOIN HouseholdUser hu on hu.UserId = u.Id
-            WHERE u.FirebaseKey = @id)
+            WHERE u.id = @id)
             GROUP BY a.Id,u.Firstname,u.Lastname, u.FirebaseKey, c.Name,
             c.Description, a.IsCompleted, a.Week, a.Rating, c.Id, u.FirebaseKey, cat.CategoryName,a.UserId
             ORDER BY cat.CategoryName, c.Id";

@@ -10,6 +10,7 @@ export default function AddHouseholdMembers({ uid }) {
 
   const update = () => {
     assignments.getAssignmentsByHouseholdFromUserId(uid).then((resp) => {
+      console.warn(resp);
       setAssignmentsUsers(resp.filter((x) => x.week === parseInt(week.thisWeek(), 10)));
       images.getMainImageByChoreId().then((img) => {
         setImages(img);
