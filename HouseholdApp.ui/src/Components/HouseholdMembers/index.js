@@ -4,13 +4,12 @@ import assignments from '../../helpers/data/assignmentData';
 import images from '../../helpers/data/imageData';
 import week from '../../helpers/data/weekNum';
 
-export default function AddHouseholdMembers({ uid }) {
+export default function AddHouseholdMembers({ uid, user, userHousehold }) {
   const [assignmentsUsers, setAssignmentsUsers] = useState([]);
   const [imageArray, setImages] = useState([]);
 
   const update = () => {
-    assignments.getAssignmentsByHouseholdFromUserId(uid).then((resp) => {
-      console.warn(resp);
+    assignments.getAssignmentsByHouseholdFromUserId(Object.values(userHousehold).filter((uh) => uh.firebaseKey == uid)[0].id).then((resp) => {
       setAssignmentsUsers(resp.filter((x) => x.week === parseInt(week.thisWeek(), 10)));
       images.getMainImageByChoreId().then((img) => {
         setImages(img);
