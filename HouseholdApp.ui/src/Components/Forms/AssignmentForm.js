@@ -73,14 +73,6 @@ export default class AssignmentForm extends React.Component {
               isMulti />
     );
 
-    const myHouseHold = () => {
-      const myarr = [];
-      this.props.userHousehold.forEach((member) => {
-        myarr.push(member.id);
-      });
-      return myarr;
-    };
-
     const FilterAllMine = () => {
       const arr = this.state.assignments;
       const filteredByThisWeek = arr.filter((a) => a.week == Week.thisWeek());

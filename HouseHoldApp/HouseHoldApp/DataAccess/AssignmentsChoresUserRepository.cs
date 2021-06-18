@@ -10,7 +10,7 @@ namespace HouseHoldApp.DataAccess
     {
         const string ConnectionString = "Server=localhost; Database=Household; Trusted_Connection=True";
 
-        public List<AssignmentsChoresUser> GetAssignmentChoresUserByFirebaseKey(string id)
+        public List<AssignmentsChoresUser> GetAssignmentChoresUserById(int id)
         {
             using var db = new SqlConnection(ConnectionString);
             var sql = $@"SELECT u.Firstname,u.Lastname, u.FirebaseKey, c.Name as Chorename,
