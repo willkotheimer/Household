@@ -17,7 +17,7 @@ namespace HouseHoldApp.DataAccess
             var sql = $@"SELECT * FROM Assignments a
                          JOIN Chores c ON c.Id = a.ChoreId
                          WHERE c.HouseHoldId = @id";
-            var results = db.Query<AssignmentsChores>(sql).ToList();
+            var results = db.Query<AssignmentsChores>(sql, new { Id = id }).ToList();
             return results;
         }
     }

@@ -20,6 +20,14 @@ namespace HouseHoldApp.DataAccess
             return results;
         }
 
+        public List<Assignments> GetAllAssignmentsOfWeek(int week)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @"SELECT* FROM Assignments WHERE week = @week";
+            var results = db.Query<Assignments>(sql, new { week = week }).OrderByDescending(assignment => assignment.Week).ToList();
+            return results;
+        }
+
         public List<Assignments> GetAllAssignmentsOfUser(int userId)
         {
             using var db = new SqlConnection(ConnectionString);

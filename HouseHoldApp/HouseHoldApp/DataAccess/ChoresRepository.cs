@@ -27,6 +27,16 @@ namespace HouseHoldApp.DataAccess
             return result;
         }
 
+        public List<Chores> GetUnassignedChoreByWeek(int hhi, int week)
+        {
+            using var db = new SqlConnection(ConnectionString);
+            var sql = @$"SELECT * FROM Chores
+                       except
+                       SELECT c.* FROM Assignments a JOIN Chores c ON a.choreId = c.Id WHERE a.Week = @week AND HouseHoldId=@hhi";
+            var result = db.Query<Chores>(sql, new { week, hhi }).ToList();
+            return result;
+        }
+
         public List<Chores> GetChoreByHouseholdId(int id)
         {
             using var db = new SqlConnection(ConnectionString);

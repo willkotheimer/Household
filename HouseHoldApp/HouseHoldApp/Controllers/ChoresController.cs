@@ -33,7 +33,16 @@ namespace HouseHoldApp.Controllers
             return Ok(Chore);
         }
 
-
+         [HttpGet("household/{id}/{week}/unassigned")]
+        public IActionResult GetUnassignedChoreByWeek(int id, int week)
+        {
+            var Chore = _repo.GetUnassignedChoreByWeek(id, week);
+            if (Chore == null)
+            {
+                return NotFound("This Chore does not exist");
+            }
+            return Ok(Chore);
+        }
         [HttpGet("household/{id}")]
         public IActionResult GetChoreByHouseholdId(int id)
         {
