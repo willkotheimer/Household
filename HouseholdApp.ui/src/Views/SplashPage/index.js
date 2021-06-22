@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import Images from '../../helpers/data/imageData';
+import Auth from '../../Components/Auth';
 
 export default function SplashPage(props) {
   const [picArray, setPicArray] = useState();
@@ -22,7 +23,7 @@ export default function SplashPage(props) {
       <Row>
         <Col className="col-3">{picArray && <img alt='organized house' src={picArray[4].image} />}</Col>
         <Col className="splash-title col-6"><div>
-          <h5>HOUSEHOLD</h5><div><button>See Your Chores=</button></div></div>
+          <h5>HOUSEHOLD</h5><div><Auth /></div></div>
         </Col>
         <Col className="col-3">{picArray && <img alt='organized house' src={picArray[5].image} />}</Col>
       </Row>

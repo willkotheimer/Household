@@ -1,13 +1,18 @@
-div.splash.container div > div > img {
-    float: left;
-    width:  120%;
-    height: 98%;
-    object-fit: cover;
-}
-
 .splash {
     margin: 0 auto;
     text-align: center;
+    height: 100%;
+    
+
+     img {
+        border-radius: 20px;
+        float: left;
+        width:  110%;
+        height: 95%;
+        margin: 2 2em 2.5em;
+        object-fit: cover;
+    }
+
 }
 
 .splash-title > div {
