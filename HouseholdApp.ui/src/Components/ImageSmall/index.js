@@ -11,10 +11,8 @@ export default function Image({
   return (
 
       <span key={`${image}-outer`} className="smallFrame">
-          <span key={`${image}-inner`} className="smallImageHolder">
-              <img key={`${image}-img`} className="smallImage" src={image} alt="" />
-          </span>
-          { deleteImage && (<AppModal deleteImage={deleteImage} onUpdate={onUpdate} title={'delete'} buttonLabel={'X'}>
+              <div className="number">1</div><img key={`${image}-img`} className="smallImage" src={image} alt="" />
+              { deleteImage && (<AppModal deletePosition="deletePosition" deleteImage={deleteImage} onUpdate={onUpdate} title={'delete'} buttonLabel={'X'}>
                <DeleteImage imageId={imageId} image={image} deleteImage={deleteImage} onUpdate={onUpdate} />
             </AppModal>) }
       </span>

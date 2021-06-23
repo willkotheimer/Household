@@ -6,7 +6,6 @@ export default function ChoresImages({ choreImages, deleteImage, onUpdate }) {
 
   return (
         <div className="d-flex">
-            These are my chore images:
         { choreImages && myImages() }
         </div>
   );
