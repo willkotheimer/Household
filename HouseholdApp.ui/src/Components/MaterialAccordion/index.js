@@ -26,7 +26,7 @@ const Accordion = withStyles({
 
 const AccordionSummary = withStyles({
   root: {
-    backgroundColor: 'rgba(129, 207, 224, .5)',
+    background: 'linear-gradient(162deg, rgba(25,178,246,1) 4%, rgba(41,128,220,1) 37%, rgba(50,98,205,1) 68%, rgba(61,65,188,1) 100%)',
     borderBottom: '1px solid rgba(0, 0, 0, .125)',
     marginBottom: -1,
     minHeight: 50,
@@ -39,9 +39,6 @@ const AccordionSummary = withStyles({
       margin: '20px 0',
       backgroundColor: 'rgba(228, 241, 254, 1)',
     },
-  },
-  expanded: {
-    backgroundColor: 'rgba(228, 241, 254, 1)',
   },
 })(MuiAccordionSummary);
 
@@ -61,31 +58,26 @@ export default function CustomizedAccordions({ userAssignments, images, complete
     [...userAssignments].map((item, index) => (
         <Accordion key={`accord${item}-${index}`} square expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
         <AccordionSummary key={`accordsummary${item}`} aria-controls="paneld-content" id="panelheader">
-          <Typography component={'span'} key={`typo1-${item}`}><span className="catTitle">{item.categoryName}</span> <span className="choretitle">{item.chorename}</span> <span className="nameTitle">Assigned to: { item.firstname } {item.isCompleted ? 'Completed' : 'Not Completed'}</span></Typography>
+          <Typography component={'span'} key={`typo1-${item}`}><span className="catTitle">{item.categoryName}</span> <span className={item.isCompleted ? 'choreDone' : 'choreTitle'}>{item.isCompleted ? (<i className="fas fa-check"></i>) : ''}{item.chorename}</span> <span className="nameTitle">{ item.firstname }</span></Typography>
           {console.warn(item)}
         </AccordionSummary>
-        <AccordionDetails className="d-flex flex-wrap" key={`accordDetails-${item}`}>
-          <span key={`span-${item}`}>
-            <Typography>
+        <AccordionDetails className="choreCorddionBackground" key={`accordDetails-${item}`}>
+          <Typography>
               { images[item.choreId] && <ImageSmall image={images[item.choreId - 1].image} /> }
-            </Typography>
-            <Typography component={'span'} key={`typo2-${item}`}>
-              <span className='accordTitle'>Description:</span>
-              <div key={`div2-${item}`}>{item.chorename}</div>
-              <span className='accordTitle'>Instructions:</span>
-              <p className='accordDescription' key={`p-${item}`}>{item.choreDescription}</p>
-            </Typography>
-          </span>
+          </Typography>
+          <Typography component={'span'} key={`typo2-${item}`}>
+            <div className='accordTitle' key={`div2-${item}`}>{item.chorename}</div>
+            <p className='accordDescription' key={`p-${item}`}>{item.choreDescription}</p>
+            { (!item.isCompleted) && <button className="completeButton" onClick={() => completeTask(item)}>Complete Task</button>}
+          </Typography>
           <Typography component={'span'} key={`typo3-${item}`}>
-            <span className='accordTitle'>Assigned to:</span>
-            <div key={`div3-${item}`}>{(item.firstname) ? item.firstname : ' no one'}</div>
+            {item.isCompleted ? (<i className="bigCheck fas fa-check"></i>) : ''}
             <span className='accordTitle'>Week:</span>
             <p key={`p2-${item}`}>{item.week}</p>
             <span className='accordTitle'>Status:</span>
             <p key={`p3-${item}`}>{(item.isCompleted) ? 'Complete' : 'Not Complete'}</p>
             <Link to={{ pathname: `/chore/${item.choreId}` }}>Details</Link>
           </Typography>
-          { (!item.isCompleted) && <button className="completeButton" onClick={() => completeTask(item)}>Complete Task</button>}
         </AccordionDetails>
       </Accordion>
     )));

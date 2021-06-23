@@ -13,7 +13,7 @@ export default function AppModal(props) {
     className,
     title,
     btnColor,
-    className2,
+    deletePosition,
   } = props;
 
   const [modal, setModal] = useState(false);
@@ -23,7 +23,7 @@ export default function AppModal(props) {
   return (
     <div>
       <Button
-        className={className2}
+        className={deletePosition}
         color={btnColor}
         onClick={() => {
           toggle();

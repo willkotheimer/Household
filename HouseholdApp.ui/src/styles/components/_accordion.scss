@@ -1,31 +1,62 @@
 .accordTitle {
     font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-size: 25px;
 }
 .accordDescription {
     width: 250px;
+    margin: 15px auto;
 }
 
 .completeButton {
     color: #fff;
     max-height: 30px;
-    background: #254038;
+    background: #337db8;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.choretitle {
-    background-color: rgb(12, 151, 24);
+.MuiTypography-body1 {
+    width: 100%;
+}
+.choreTitle {
+    background-color: #18b5f7;
     padding: .5em;
     color: #fff;
+    border-radius: 25px;
+    float: left;
 }
 
-.nameTitle {
-    background-color: cornflowerblue;
+.choreDone {
+    background-color: #20c14d;
     padding: .5em;
     color: #fff;
+    border-radius: 25px;
+    float: left;
 }
 
 .catTitle {
-    background-color: rgb(109, 21, 112);
+    background-color: #337db8;
     padding: .5em;
     color: #fff;
+    border-radius: 25px;
+    float: left;
+}
+
+.nameTitle {
+    padding: .5em;
+    color: #fff;
+    text-align: right;
+    float: right;
+}
+
+.choreCorddionBackground {
+    background-color:#c5d4e5;
+}
+
+.bigCheck {
+    position: absolute;
+    color:  #20c14d;
+    opacity: .6;
+    font-size: 150px !important;
 }

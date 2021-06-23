@@ -1,0 +1,35 @@
+.smallFrame {
+    position: relative;
+    img {
+        display: block;
+        object-fit: cover;
+        width: 200px;
+        height: 200px;
+        border: 2px solid #fff;
+    }
+}
+.deletePosition {
+    position: absolute;
+    top: 170px;
+    right: 20px;
+    max-width: 50px !important;
+    opacity: 80%;
+}
+
+.number {
+    color: white;
+    position: absolute;
+    top: 175px;
+    left: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: grey;
+    width: 35px;
+    height: 34px;
+    border-radius: 20px;
+}
+
+.deletePosition:hover {
+    background-color: #fff;
+    color: #000;
+}

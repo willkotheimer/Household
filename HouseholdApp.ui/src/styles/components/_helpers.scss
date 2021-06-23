@@ -6,10 +6,12 @@ border-radius: 20px;
 }
 
 .smallImage {
-width: 80%;
+max-height: 240px;
+width: auto;
 height: auto;
 border-radius: 20px;
 text-shadow: 2px 2px #000;
+border: 1px solid #18b5f7;
 }
 
 .smallFrame {

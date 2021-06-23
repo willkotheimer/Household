@@ -5,7 +5,7 @@ export default function Nav(props) {
   // const { user } = props;
   return (
     <>
-    <div className="navbar-container p-2 d-flex justify-content-center align-items-center">
+    <div className="nav navbar-container p-2 d-flex justify-content-center align-items-center">
       <header className="brand-container">
         <Link to="/" className='brand'>Household</Link>
       </header>

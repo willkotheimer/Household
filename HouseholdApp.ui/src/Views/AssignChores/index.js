@@ -13,7 +13,7 @@ export default function AssignChoresView({ uid, userHousehold, householdId }) {
   const [choresLeft, setChoresLeft] = useState([]);
   return (
         <div className="assignChores">
-            Assign Chores Page}
+            Assign Chores Page
             <AppModal key={'addChore'} title={'Add Chore'} buttonLabel={'Add Chore'}>
                <ChoreForm key={'choreform'} uid={uid} />
             </AppModal>

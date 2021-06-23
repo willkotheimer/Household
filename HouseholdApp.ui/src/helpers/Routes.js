@@ -4,6 +4,7 @@ import AssignChores from '../Views/AssignChores';
 import ChoresDetailsView from '../Views/ChoreDetails';
 import CreateHouseholdView from '../Views/CreateHouseHold';
 import SplashPageView from '../Views/SplashPage';
+import UserDashboardView from '../Views/UserDashboardView';
 
 export default function Routes({
   user,
@@ -13,10 +14,11 @@ export default function Routes({
 }) {
   return (
         <Switch>
-            <Route exact path='/' component={(props) => <SplashPageView props={props} user={user} uid={uid} householdId={householdId} userHousehold={userHousehold} />}/>
+            { user && <Route exact path='/' component={(props) => <UserDashboardView props={props} user={user} uid={uid} householdId={householdId} userHousehold={userHousehold} />}/> }
+            { !user && <Route exact path='/' component={(props) => <SplashPageView props={props} user={user} uid={uid} householdId={householdId} userHousehold={userHousehold} />}/> }
             <Route exact path='/assignchores' component={(props) => <AssignChores props={props} user={user} uid={uid} householdId={householdId} userHousehold={userHousehold} />}/>
             <Route exact path='/householdDashboard' component={(props) => <CreateHouseholdView props={props} user={user} uid={uid} userHousehold={userHousehold} />}/>
-            <Route exact path='/chore/:id' component={ChoresDetailsView}/>
+            <Route exact path='/chore/:id' component={(props) => <ChoresDetailsView props={props} user={user} />}/>
         </Switch>
   );
 }
