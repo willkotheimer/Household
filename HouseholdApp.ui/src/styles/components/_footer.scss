@@ -1,4 +1,19 @@
 .page-footer {
+    h5 {
+        font-weight: bold;
+    }
+    color: grey;
     background-color: #fff !important;
     margin-top: 20px !important;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.footerLogo {
+    width: 150px;
+}
+
+.footer-section {
+    border-left: 1px solid blue;
 }

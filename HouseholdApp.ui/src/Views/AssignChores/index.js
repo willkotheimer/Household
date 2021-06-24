@@ -15,7 +15,7 @@ export default function AssignChoresView({ uid, userHousehold, householdId }) {
   return (
     <>
         <div className="assignChores">
-            Assign Chores Page
+            <h1>Assign the Chores</h1>
             <AppModal key={'addChore'} title={'Add Chore'} buttonLabel={'Add Chore'}>
                <ChoreForm key={'choreform'} uid={uid} />
             </AppModal>
