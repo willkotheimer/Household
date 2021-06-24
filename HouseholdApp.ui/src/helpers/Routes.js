@@ -17,7 +17,7 @@ export default function Routes({
             { user && <Route exact path='/' component={(props) => <UserDashboardView props={props} user={user} uid={uid} householdId={householdId} userHousehold={userHousehold} />}/> }
             { !user && <Route exact path='/' component={(props) => <SplashPageView props={props} user={user} uid={uid} householdId={householdId} userHousehold={userHousehold} />}/> }
             { user && <Route exact path='/assignchores' component={(props) => <AssignChores props={props} user={user} uid={uid} householdId={householdId} userHousehold={userHousehold} />}/> }
-            { user && <Route exact path='/householdDashboard' component={(props) => <CreateHouseholdView props={props} user={user} uid={uid} userHousehold={userHousehold} />}/> }
+            { user && <Route exact path='/assignmentBoard' component={(props) => <CreateHouseholdView props={props} user={user} uid={uid} userHousehold={userHousehold} />}/> }
             <Route exact path='/chore/:id' component={(props) => <ChoresDetailsView props={props} user={user} />}/>
             </>
         </Switch>

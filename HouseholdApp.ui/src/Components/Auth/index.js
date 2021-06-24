@@ -35,7 +35,7 @@ export default class Auth extends Component {
 
     return (
       <>
-      { !user ? <button className='nav-link btn btnLogin' onClick={(e) => AuthData.loginClickEvent(e)}><img src={Logo}/></button>
+      { !user ? <button className='nav-link btn btnLogin' onClick={(e) => AuthData.loginClickEvent(e)}><img title='Google Sign In' src={Logo}/></button>
         : <>
       <div className='row'>
         <div className='user-icon-container'>

@@ -66,7 +66,6 @@ export default function CustomizedAccordions({ userAssignments, images, complete
         </AccordionSummary>
         <AccordionDetails className="choreCorddionBackground" key={`accordDetails-${item}`}>
           <Typography>
-              { console.warn('im there', item.choreId)}
               { item.image && <ImageSmall image={item.image} /> }
           </Typography>
           <Typography component={'span'} key={`typo2-${item}`}>

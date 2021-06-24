@@ -61,12 +61,16 @@ export default class AssignmentForm extends React.Component {
   };
 
   render() {
-    const { useSelection, week, unassigned } = this.state;
+    const {
+      options,
+      week,
+      unassigned,
+    } = this.state;
     const SelectChore = ({ person }) => (
       <Select name={person}
               className="assignForm"
               components={makeAnimated()}
-              options={useSelection}
+              options={options}
               onChange={(e) => this.changeHandler(e)}
               value={this.state.selected}
               key={person.name}
