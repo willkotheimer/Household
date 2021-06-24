@@ -42,7 +42,6 @@ export default class Uploader extends React.Component {
         Active: this.state.Active,
         Image: image,
       };
-      console.warn(makeImageObject);
       Img.addImage(makeImageObject).then(() => {
         this.props.onUpdate();
       });
