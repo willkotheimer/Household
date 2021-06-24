@@ -50,20 +50,24 @@ const AccordionDetails = withStyles((theme) => ({
 
 export default function CustomizedAccordions({ userAssignments, images, completeTask }) {
   const [expanded, setExpanded] = React.useState('panel1');
-
-  useEffect(() => {
-  }, []);
-
+  const newUserAssignments = [];
+  let myObj = {};
+  userAssignments.forEach((ua, i) => {
+    myObj = ua;
+    const theImage = images.find((image) => ua.choreId === image.choreId);
+    if (theImage) myObj.image = theImage.image;
+    newUserAssignments.push(myObj);
+  });
   const gettasks = () => (
-    [...userAssignments].map((item, index) => (
+    [...newUserAssignments].map((item, index) => (
         <Accordion key={`accord${item}-${index}`} square expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
         <AccordionSummary key={`accordsummary${item}`} aria-controls="paneld-content" id="panelheader">
           <Typography component={'span'} key={`typo1-${item}`}><span className="catTitle">{item.categoryName}</span> <span className={item.isCompleted ? 'choreDone' : 'choreTitle'}>{item.isCompleted ? (<i className="fas fa-check"></i>) : ''}{item.chorename}</span> <span className="nameTitle">{ item.firstname }</span></Typography>
-          {console.warn(item)}
         </AccordionSummary>
         <AccordionDetails className="choreCorddionBackground" key={`accordDetails-${item}`}>
           <Typography>
-              { images[item.choreId] && <ImageSmall image={images[item.choreId - 1].image} /> }
+              { console.warn('im there', item.choreId)}
+              { item.image && <ImageSmall image={item.image} /> }
           </Typography>
           <Typography component={'span'} key={`typo2-${item}`}>
             <div className='accordTitle' key={`div2-${item}`}>{item.chorename}</div>

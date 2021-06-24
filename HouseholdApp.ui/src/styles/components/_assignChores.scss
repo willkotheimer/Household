@@ -1,5 +1,5 @@
 .assignChores {
-    height: 700px;
+    height: 100%;
     button {
         min-width: 40%;
       }
@@ -20,7 +20,8 @@
   
     .assignedtonoone {
         font-weight: bold;
-        background-color: palevioletred;
+        background-color: #DEE9F5;
+        border: 1px solid #000;
         border-radius: 25px;
         padding: .2em;
         margin: .1em
@@ -34,7 +35,7 @@
     flex-wrap: wrap;
     .assignedtome {
         font-weight: bold;
-        background-color: lightblue;
+        background-color: #BDDAF0;
         border-radius: 25px;
         padding: .2em;
         margin: .1em
@@ -43,27 +44,30 @@
 
 .assigntitle {
     margin: 40px 0 auto;
-    background-color:rgb(67, 174, 201);
-    color: #fff;
+    color: rgb(95, 86, 162);
     padding: 10px;
     width: 100%;
     font-size: 1em;
+    font-weight: bold;
 }
 
 body > div:nth-child(6) > div > div.modal.fade.show > div > div > div.modal-body > div > form > div.assignForm > div > div > svg {
-    background-color: rgb(165, 29, 29);
+    background-color: #2784DE;
     color: white;
 }
 
 body > div:nth-child(6) > div > div.modal.fade.show > div > div > div.modal-body > div > form > div.assignForm > div > div > div:nth-child(3) {
-    background-color: rgb(165, 29, 29);
+    background-color: #2784DE;
     color: white;
 }
 
 body > div:nth-child(6) > div > div.modal.fade.show > div > div > div.modal-body > div > form > div.assignForm > div:nth-child(3) {
-    background-color: rgb(165, 29, 29);
+    background-color: #2784DE;
     color: white;
 }
 
+.modal-content {
+    background-color: #D2E0EE !important;
+}
 
 

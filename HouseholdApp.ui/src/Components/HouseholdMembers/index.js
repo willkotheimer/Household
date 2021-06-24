@@ -3,6 +3,7 @@ import CustomizedAccordions from '../MaterialAccordion';
 import assignments from '../../helpers/data/assignmentData';
 import images from '../../helpers/data/imageData';
 import week from '../../helpers/data/weekNum';
+import Footer from '../Footer';
 
 export default function AddHouseholdMembers({ uid, user, userHousehold }) {
   const [assignmentsUsers, setAssignmentsUsers] = useState([]);
@@ -35,12 +36,15 @@ export default function AddHouseholdMembers({ uid, user, userHousehold }) {
   };
 
   return (
+    <>
      <div>
          <span><h1>Household Chores</h1>
             <span>
              </span>
         </span>
          <CustomizedAccordions images={imageArray} userAssignments={assignmentsUsers} completeTask={completeTask} />
+         <Footer />
      </div>
+     </>
   );
 }

@@ -8,6 +8,7 @@ import {
   DropdownItem,
 } from 'reactstrap';
 import AuthData from '../../helpers/data/authData';
+import Logo from '../../styles/images/Household_logo_badge.svg';
 
 export default class Auth extends Component {
   state = {
@@ -34,7 +35,7 @@ export default class Auth extends Component {
 
     return (
       <>
-      { !user ? <button className='nav-link btn btnLogin' onClick={(e) => AuthData.loginClickEvent(e)}>See Your Chores</button>
+      { !user ? <button className='nav-link btn btnLogin' onClick={(e) => AuthData.loginClickEvent(e)}><img src={Logo}/></button>
         : <>
       <div className='row'>
         <div className='user-icon-container'>

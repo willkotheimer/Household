@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../../styles/images/logo.png';
+import Footer from '../../Components/Footer';
 
 export default function UserDashboardView(props) {
   return (
@@ -50,6 +51,7 @@ export default function UserDashboardView(props) {
                   reoccuring tasks
                 </div>
               </div>
+              <Footer />
               </div>
             </div>
         </div>

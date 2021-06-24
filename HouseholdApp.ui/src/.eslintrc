@@ -15,6 +15,7 @@
     "allowTemplateLiterals": true
   },
   "rules": {
+    "no-param-reassign": ["error", { "props": false }],
     "no-console": [
       1,
       {

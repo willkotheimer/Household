@@ -6,6 +6,7 @@ import Nav from '../Components/Nav';
 import './App.scss';
 import fbConnection from '../helpers/data/fbConnection';
 import Household from '../helpers/data/houseHoldUsers';
+import Footer from '../Components/Footer';
 
 fbConnection();
 
@@ -15,6 +16,7 @@ class App extends React.Component {
     uid: {},
     userHousehold: [],
     householdId: '',
+    showFooter: false,
   };
 
   componentDidMount() {
@@ -48,7 +50,12 @@ class App extends React.Component {
     <div className='App'>
           <Router>
             <Nav user={this.state.user} />
-            <Routes authed={this.state.authed} uid={this.state.uid} user={this.state.user} householdId={this.state.householdId} userHousehold={this.state.userHousehold} />
+          <Routes authed={this.state.authed}
+                    showFooter={this.state.showFooter}
+                    uid={this.state.uid}
+                    user={user}
+                    householdId={this.state.householdId}
+                    userHousehold={this.state.userHousehold} />
           </Router>
     </div>
     );

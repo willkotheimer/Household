@@ -91,9 +91,9 @@ export default class AssignmentForm extends React.Component {
                 <br/>
                 <Button className='mt-3'>Submit</Button>
           </Form>
-                <div className="assigntitle">Assigned to me: </div>
+                <div className="assigntitle">Assigned to this user: </div>
                 <div className="myAssignedContainer">{ this.state.assignments && <FilterAllMine /> }</div>
-                <div className="assigntitle">Not assigned yet: </div>
+                <div className="assigntitle">Unassigned Tasks: </div>
                 <div className="unassignedContainer">{ unassigned && (<NonAssignedChores />) }</div>
           </div>
           </>
