@@ -23,7 +23,7 @@ export default function UserDashboardView({
       const allWeeklyAssignments = await resp.filter((x) => x.week === parseInt(week.thisWeek(), 10));
       const filteredByNotCompletion = await allWeeklyAssignments.filter((x) => !x.isCompleted === true);
       if (uid && userHousehold) {
-        const myid = await userHousehold[0].filter((uh) => uh.firebaseKey === uid)[0].id;
+        const myid = await userHousehold[0]?.filter((uh) => uh.firebaseKey === uid)[0].id;
         console.warn(myid);
         const allMyWeeklyAssignments = await allWeeklyAssignments.filter((mine) => mine.userId === myid);
         console.warn(allMyWeeklyAssignments);

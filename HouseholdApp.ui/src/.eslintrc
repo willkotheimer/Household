@@ -12,7 +12,7 @@
     "window": true,
     "$": true,
     "XMLHttpRequest": true,
-    "allowTemplateLiterals": true
+    "allowTemplateLiterals": true,
   },
   "rules": {
     "no-param-reassign": ["error", { "props": false }],
@@ -27,6 +27,7 @@
     ],
     "no-return-assign": ["error", "always"],
     "no-debugger": 1,
+    "no-plusplus": 0,
     "class-methods-use-this": 0,
     "linebreak-style": 0,
     "max-len": [
