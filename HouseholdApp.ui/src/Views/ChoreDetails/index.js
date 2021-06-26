@@ -11,14 +11,7 @@ import logo from '../../styles/images/logo.png';
 export default function ChoreDetailsView({ props, user }) {
   const [choreImages, setImages] = useState([]);
   const [choreInfo, setChoreInfo] = useState([]);
-  const createImageOrder = () => {
-    const imageOrderOriginal = [];
-    choreImages.forEach((x) => {
-      imageOrderOriginal.push(x.id);
-    });
-    return imageOrderOriginal;
-  };
-  const [imageOrder, setImageOrder] = useState([createImageOrder()]);
+  const [imageOrder, setImageOrder] = useState([]);
   const [choreOrderButtons, setChoreOrderButtons] = useState(false);
   const { id } = props.match.params;
   let isMounted = true;
@@ -31,29 +24,27 @@ export default function ChoreDetailsView({ props, user }) {
   }, [id]);
 
   const getChores = async () => {
-    console.clear();
-    const img = await images.getImagesByChoreId(id);
-    const allChoreImages = await img;
-    setImages(allChoreImages);
-    console.warn('before', choreImages, imageOrder);
-    sortImages(choreImages, imageOrder);
-    console.warn('after', choreImages, imageOrder);
-    const myOrder = [];
-    allChoreImages.forEach((theimg) => {
-      myOrder.push(theimg.id);
-    });
-    setImageOrder(myOrder);
-    await chores.GetChoreById(id).then((info) => {
-      setChoreInfo(info);
-    });
+    if (id) {
+      const img = await images.getImagesByChoreId(id);
+      const allChoreImages = await img;
+      await setImages(allChoreImages);
+      const myOrder = [];
+      allChoreImages.forEach((theimg) => {
+        myOrder.push(theimg.id);
+      });
+      setImageOrder(myOrder);
+      await chores.GetChoreById(id).then((info) => {
+        setChoreInfo(info);
+      });
+    }
   };
 
   const sortImages = (origImages, ordered) => {
     const newOrder = [];
-    ordered.forEach((index) => {
-      newOrder.push(origImages.filter((x) => x.id === index)[0]);
+    ordered.forEach((item) => {
+      newOrder.push(origImages.filter((x) => x.id === item)[0]);
     });
-    setImageOrder(newOrder);
+    setImages(newOrder);
   };
 
   const toggleChoresOrder = () => {
@@ -64,12 +55,6 @@ export default function ChoreDetailsView({ props, user }) {
   /* eslint-disable no-param-reassign */
   /* esline-disable no-plusplus */
   const arrayMove = (arr, oldIndex, newIndex) => {
-    while (oldIndex < 0) {
-      oldIndex += arr.length;
-    }
-    while (newIndex < 0) {
-      newIndex += arr.length;
-    }
     if (newIndex >= arr.length) {
       let k = newIndex - arr.length + 1;
       while (k--) {
@@ -77,27 +62,25 @@ export default function ChoreDetailsView({ props, user }) {
       }
     }
     arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0]);
-    return arr; // for testing purposes
+    return arr; // for testing
   };
   /* eslint-enable no-param-reassign */
   /* eslint-enable no-plusplus */
 
-  const toggleLeft = (imageID) => {
-    console.warn(`left ${imageID}`);
+  const toggleLeft = async (imageID) => {
     const newAArray = imageOrder;
     const index = newAArray.indexOf(imageID);
-    arrayMove(newAArray, index, ((index - 1) % imageOrder.length));
-    setImageOrder(newAArray);
-    getChores();
+    const newArray2 = await arrayMove(newAArray, index, ((index - 1)));
+    await setImageOrder(newArray2);
+    await sortImages(choreImages, imageOrder);
   };
 
-  const toggleRight = (imageID) => {
-    console.warn(`right  ${imageID}`);
+  const toggleRight = async (imageID) => {
     const newAArray = imageOrder;
     const index = newAArray.indexOf(imageID);
-    arrayMove(newAArray, index, ((index + 1) % imageOrder.length));
-    setImageOrder(newAArray);
-    getChores();
+    const newArray2 = await arrayMove(newAArray, index, ((index + 1) % imageOrder.length));
+    await setImageOrder(newArray2);
+    await sortImages(choreImages, imageOrder);
   };
 
   const deleteImage = (imageId, imageUrl) => {
