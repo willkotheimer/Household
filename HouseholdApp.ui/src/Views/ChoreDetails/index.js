@@ -7,11 +7,11 @@ import ChoreForm from '../../Components/Forms/ChoreForm';
 import Uploader from '../../Components/Forms/ImageUploader';
 import ChoreImages from '../../Components/ChoresImages';
 import logo from '../../styles/images/logo.png';
-import Footer from '../../Components/Footer';
 
 export default function ChoreDetailsView({ props, user }) {
   const [choreImages, setImages] = useState([]);
   const [choreInfo, setChoreInfo] = useState([]);
+  const [choreOrderButtons, setChoreOrderButtons] = useState(false);
   const { id } = props.match.params;
   console.warn(user);
 
@@ -35,6 +35,19 @@ export default function ChoreDetailsView({ props, user }) {
     });
   };
 
+  const toggleChoresOrder = () => {
+    const myNewState = !choreOrderButtons;
+    setChoreOrderButtons(myNewState);
+  };
+
+  const toggleLeft = (imageID) => {
+    console.warn(`left ${imageID}`);
+  };
+
+  const toggleRight = (imageID) => {
+    console.warn(`right  ${imageID}`);
+  };
+
   const deleteImage = (imageId, imageUrl) => {
     deleteImage(imageId, imageUrl).then(() => {
       getChores();
@@ -51,7 +64,7 @@ export default function ChoreDetailsView({ props, user }) {
                    <div className="leftGroups">
                          <div className="Greetings">
                             <div className="logo"> <img alt={logo} src={logo} /></div><div><h1 className="mygreeting">Hi {
-                            user.displayName.split(' ')[0]
+                            user?.displayName.split(' ')[0]
           }!
                             </h1>
                             <div className="subtitle">
@@ -73,11 +86,19 @@ export default function ChoreDetailsView({ props, user }) {
                 </div>
             </div>
             <div className="bottom">
-              <div className="groups">
             <AppModal choreInfo={choreInfo} choreImages={choreImages} title={'Add Image'} buttonLabel={'Add Image'}>
                <Uploader choreInfo={choreInfo} choreImages={choreImages} onUpdate={getChores} />
             </AppModal>
-            <ChoreImages choreImages={choreImages} onUpdate={getChores} deleteImage={deleteImage} />
+            <button className="btn btn-danger" onClick ={toggleChoresOrder}> Reorder Images </button>
+              <div className="groups">
+            <ChoreImages
+            choreImages={choreImages}
+            onUpdate={getChores}
+            deleteImage={deleteImage}
+            showButtons={choreOrderButtons}
+            toggleRight = {toggleRight}
+            toggleLeft = {toggleLeft}
+            />
             </div>
               </div>
             </div>
