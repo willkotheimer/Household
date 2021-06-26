@@ -64,19 +64,19 @@ export default class AssignmentForm extends React.Component {
     const {
       options,
       week,
+      useSelection,
       unassigned,
     } = this.state;
     const SelectChore = ({ person }) => (
       <Select name={person}
               className="assignForm"
               components={makeAnimated()}
-              options={options}
+              options={useSelection}
               onChange={(e) => this.changeHandler(e)}
               value={this.state.selected}
               key={person.name}
               isMulti />
     );
-
     const FilterAllMine = () => {
       const arr = this.state.assignments;
       const filteredByThisWeek = arr.filter((a) => a.week == Week.thisWeek());

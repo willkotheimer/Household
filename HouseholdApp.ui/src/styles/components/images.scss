@@ -10,26 +10,30 @@
 }
 .deletePosition {
     position: absolute;
-    top: 170px;
-    right: 20px;
-    max-width: 50px !important;
-    opacity: 80%;
+    font-weight: bold;
+    top: 168px;
+    right: 23px;
+    height: 37px;
+    width: 38px;
+    opacity: 90%;
+    background: transparent !important;
+    border: 2px solid white !important;
 }
 
 .number {
     color: white;
     position: absolute;
-    top: 175px;
+    top: 170px;
     left: 25px;
     font-size: 20px;
     font-weight: bold;
-    background-color: grey;
+    border: 2px solid white;
     width: 35px;
     height: 34px;
     border-radius: 20px;
 }
 
 .deletePosition:hover {
-    background-color: #fff;
+    background-color: #fff !important;
     color: #000;
 }
