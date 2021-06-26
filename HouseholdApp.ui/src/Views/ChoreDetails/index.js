@@ -55,6 +55,9 @@ export default function ChoreDetailsView({ props, user }) {
   /* eslint-disable no-param-reassign */
   /* esline-disable no-plusplus */
   const arrayMove = (arr, oldIndex, newIndex) => {
+    while (newIndex < 0) {
+      newIndex += arr.length;
+    }
     if (newIndex >= arr.length) {
       let k = newIndex - arr.length + 1;
       while (k--) {
@@ -93,7 +96,7 @@ export default function ChoreDetailsView({ props, user }) {
       <>
       <div>
         <div className="ChoreDetails">
-            Chore Details
+            <h1>Chore Details</h1>
             <div className="top">
                 <div className="groups">
                    <div className="leftGroups">
