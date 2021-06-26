@@ -9,13 +9,17 @@ export default function AddHouseholdMembers({ uid, user, userHousehold }) {
   const [assignmentsUsers, setAssignmentsUsers] = useState([]);
   const [imageArray, setImages] = useState([]);
 
-  const update = () => {
-    assignments.getAssignmentsByHouseholdFromUserId(Object.values(userHousehold).filter((uh) => uh.firebaseKey == uid)[0].id).then((resp) => {
-      setAssignmentsUsers(resp.filter((x) => x.week === parseInt(week.thisWeek(), 10)));
-      images.getMainImageByChoreId().then((img) => {
-        setImages(img);
+  const update = async () => {
+    const myhouseHold = await userHousehold;
+    console.warn(myhouseHold);
+    if (myhouseHold) {
+      assignments.getAssignmentsByHouseholdFromUserId(Object.values(myhouseHold).filter((uh) => uh.firebaseKey === uid)[0].id).then((resp) => {
+        setAssignmentsUsers(resp.filter((x) => x.week === parseInt(week.thisWeek(), 10)));
+        images.getMainImageByChoreId().then((img) => {
+          setImages(img);
+        });
       });
-    });
+    }
   };
 
   useEffect(() => update(), []);
