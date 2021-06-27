@@ -101,10 +101,9 @@ export default function ChoreDetailsView({ props, user }) {
                 <div className="groups">
                    <div className="leftGroups">
                          <div className="Greetings">
-                            <div className="logo"> <img alt={logo} src={logo} /></div><div><h1 className="mygreeting">Hi {
-                            user?.displayName.split(' ')[0]
-          }!
-                            </h1>
+                            <div className="logo"> <img alt={logo} src={logo} /></div><div><h3 className="mygreeting">Chore: {choreInfo.name}</h3> <div>
+                            <h5>Hi {
+                            user?.displayName.split(' ')[0]}</h5></div>
                             <div className="subtitle">
                                Household Stats for &nbsp;
                                Week 25

@@ -52,7 +52,7 @@ export default function UserDashboardView({
               <div className="logoContainer">
                 <div className="leftGroups">
                   <div className="Greetings">
-                  <span className="logo"> <img src={logo} /></span><div><h1 className="mygreeting">Hi {user.displayName.split(' ')[0]}</h1>
+                  <span className="logo"> <img src={logo} /></span><div><h1 className="headline">HOUSEHOLD</h1><h4 className="mygreeting">Hi {user.displayName.split(' ')[0]}!</h4>
                   <div className="subtitle">
                     Household Stats for &nbsp;
                     Week 25
