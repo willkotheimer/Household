@@ -23,10 +23,8 @@ export default function UserDashboardView({
       const allWeeklyAssignments = await resp.filter((x) => x.week === parseInt(week.thisWeek(), 10));
       const filteredByNotCompletion = await allWeeklyAssignments.filter((x) => !x.isCompleted === true);
       if (uid && userHousehold) {
-        const myid = await userHousehold[0].filter((uh) => uh.firebaseKey === uid)[0].id;
-        console.warn(myid);
+        const myid = await userHousehold[0]?.filter((uh) => uh.firebaseKey === uid)[0].id;
         const allMyWeeklyAssignments = await allWeeklyAssignments.filter((mine) => mine.userId === myid);
-        console.warn(allMyWeeklyAssignments);
         setMyAssignments(allMyWeeklyAssignments.length);
         const allMyCompletedAssignments = await allMyWeeklyAssignments.filter((mycomplete) => mycomplete.isCompleted === true);
         setNotCompleted(filteredByNotCompletion.length);
@@ -54,7 +52,7 @@ export default function UserDashboardView({
               <div className="logoContainer">
                 <div className="leftGroups">
                   <div className="Greetings">
-                  <span className="logo"> <img src={logo} /></span><div><h1 className="mygreeting">Hi {user.displayName.split(' ')[0]}</h1>
+                  <span className="logo"> <img src={logo} /></span><div><h1 className="headline">HOUSEHOLD</h1><h4 className="mygreeting">Hi {user.displayName.split(' ')[0]}!</h4>
                   <div className="subtitle">
                     Household Stats for &nbsp;
                     Week 25
