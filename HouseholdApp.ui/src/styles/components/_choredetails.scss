@@ -1,11 +1,15 @@
 .ChoreDetails {
     h1 {
         color: #fff;
+        animation:pageheader .5s;
+        -moz-animation:pageheader .5s; /* Firefox */
+        -webkit-animation:pageheader .5s; /* Safari and Chrome */ 
     }
     position: relative;
     animation:page .5s;
     -moz-animation:page .5s; /* Firefox */
     -webkit-animation:page .5s; /* Safari and Chrome */ 
+    
     .top {
         padding-top: 20px;
         width: 100%;
@@ -184,30 +188,40 @@
 @keyframes page {
     from {top: 1000px;} 
     to{top:520px;}
-    from {
-        font-weight: 100;
-      }
-      to {
-        font-weight: 900;
-      }
    }
  @-moz-keyframes page {
       from {top: 1000px;} 
       to{top:520px;}
-      from {
-        font-weight: 100;
-      }
-      to {
-        font-weight: 900;
-      }
  }
 @-webkit-keyframes page {
       from {top: 1000px;} 
       to{top:520px;}
-      from {
-        font-weight: 100;
+ }
+
+ 
+
+@keyframes pageheader {
+ 
+    from {
+        font-weight: initial;
       }
       to {
-        font-weight: 900;
+        font-weight: bold;
+      }
+   }
+ @-moz-keyframes pageheader {
+    from {
+        font-weight: initial;
+      }
+      to {
+        font-weight: bold;
+      }
+ }
+@-webkit-keyframes pageheader {
+    from {
+        font-weight: initial;
+      }
+      to {
+        font-weight: bold;
       }
  }

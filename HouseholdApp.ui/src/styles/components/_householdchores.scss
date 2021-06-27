@@ -127,29 +127,29 @@
     from {top: 1000px;} 
     to{top:520px;}
     from {
-        font-weight: 100;
+        font-weight: initial;
       }
       to {
-        font-weight: 900;
+        font-weight: bold;
       }
    }
  @-moz-keyframes page {
       from {top: 1000px;} 
       to{top:520px;}
       from {
-        font-weight: 100;
+        font-weight: initial;
       }
       to {
-        font-weight: 900;
+        font-weight: bold;
       }
  }
 @-webkit-keyframes page {
       from {top: 1000px;} 
       to{top:520px;}
       from {
-        font-weight: 100;
+        font-weight: initial;
       }
       to {
-        font-weight: 900;
+        font-weight: bold;
       }
  }
