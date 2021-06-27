@@ -11,7 +11,6 @@ const getChoresByHousehold = (id) => new Promise((resolve, reject) => {
 
 const getUnassignedChoresByWeekAndHouseHold = (week, householdId) => new Promise((resolve, reject) => {
   axios.get(`${choresURL}/household/${householdId}/${week}/unassigned`).then((response) => {
-    // console.warn(response.data);
     resolve(response.data);
   });
 });
