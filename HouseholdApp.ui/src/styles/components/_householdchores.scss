@@ -20,6 +20,10 @@
                 margin: 0 auto;
             .rightGroups {
                 margin-left: 80px;
+                margin-top: 80px;
+                .topContainers {
+                    min-height: 250px;
+                }
             }
             .leftGroups {
                 margin-left: 80px;
@@ -60,8 +64,6 @@
                 width: 32%;
                 min-width: 290px;
                 min-height: 150px;
-                padding-bottom: 25%;
-                margin-top: 20%;
                 margin-bottom: 10%;
                 -webkit-box-shadow: 5px 5px 7px 1px #28117d;
                  box-shadow: 5px 5px 7px 1px #28117d;
@@ -70,6 +72,10 @@
                 }
                 .stats {
                     font-size: 18px;
+                }
+                .householdPie {
+                    margin: 0px 70px;
+                    z-index: 4;
                 }
             }
         }
