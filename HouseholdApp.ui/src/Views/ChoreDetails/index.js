@@ -7,6 +7,7 @@ import ChoreForm from '../../Components/Forms/ChoreForm';
 import Uploader from '../../Components/Forms/ImageUploader';
 import ChoreImages from '../../Components/ChoresImages';
 import logo from '../../styles/images/logo.png';
+import Footer from '../../Components/Footer';
 
 export default function ChoreDetailsView({ props, user }) {
   const [choreImages, setImages] = useState([]);
@@ -140,6 +141,7 @@ export default function ChoreDetailsView({ props, user }) {
               </div>
             </div>
         </div>
+        <Footer />
         </div>
         </>
   );
