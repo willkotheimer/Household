@@ -1,4 +1,9 @@
 .ChoreDetails {
+    button {
+        min-width: 40%;
+        background-color: #3236a8 !important;
+        border: 1px solid #2784DE !important;
+    }
     h1 {
         color: #fff;
         animation:pageheader .5s;

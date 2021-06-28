@@ -1,9 +1,14 @@
 .assignChores {
     // height: 100%;
     position: absolute;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
     button {
         min-width: 40%;
-      }
+        background-color: #3236a8 !important;
+        border: 1px solid #2784DE !important;
+    }
    min-height: calc(100vh - 50px);
    animation:page .5s;
      -moz-animation:page .5s; /* Firefox */
@@ -19,6 +24,18 @@
     flex-direction: column;
     justify-content: center;
     padding-left: 15%;
+    button {
+        min-width: 40%;
+        background-color: #3236a8 !important;
+        border: 1px solid #2784DE !important;
+    }
+}
+.modal-footer {
+    button {
+            min-width: 40%;
+            background-color: #3236a8 !important;
+            border: 1px solid #2784DE !important;
+    }
 }
 
 .unassignedContainer {
