@@ -3,7 +3,6 @@
     position: absolute;
     font-size: 1.5em;
     font-weight: bold;
-    color: white;
     button {
         min-width: 40%;
         background-color: #3236a8 !important;
@@ -14,7 +13,8 @@
      -moz-animation:page .5s; /* Firefox */
      -webkit-animation:page .5s; /* Safari and Chrome */ 
      h1 {
-        color: white;
+        font-weight: bold;
+        color: #0d1d47;
         animation: page 1s linear 0s infinite alternate both;
     } 
 }
@@ -26,7 +26,8 @@
     padding-left: 15%;
     button {
         min-width: 40%;
-        background-color: #3236a8 !important;
+        border-radius: 7px;
+        background-color: #0d1d47 !important;
         border: 1px solid #2784DE !important;
     }
 }

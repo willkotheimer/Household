@@ -22,7 +22,7 @@ export default function ChoresImages({
   />));
 
   return (
-        <div className="d-flex">
+        <div className="inner-images d-flex flex-wrap-row">
         { choreImages && myImages() }
         </div>
   );

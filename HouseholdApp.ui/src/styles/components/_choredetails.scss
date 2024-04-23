@@ -1,11 +1,13 @@
 .ChoreDetails {
     button {
         min-width: 40%;
-        background-color: #3236a8 !important;
+        border-radius: 7px;
+        background-color: #0d1d47 !important;
         border: 1px solid #2784DE !important;
     }
     h1 {
-        color: #fff;
+        font-weight: bold;
+        color: #0d1d47;
         animation:pageheader .5s;
         -moz-animation:pageheader .5s; /* Firefox */
         -webkit-animation:pageheader .5s; /* Safari and Chrome */ 
@@ -152,7 +154,13 @@
         clip-path: polygon(26% 0, 68% 14%, 100% 14%, 100% 100%, 64% 100%, 20% 100%, 0 100%, 0 0);
 
         .groups {
+            display: flex;
+            flex-wrap: wrap;
             margin: 0 auto;
+            max-width: 80%;
+            .inner-images {
+                width: 100px;
+            }
         }
         .title {
             font-size: 25px;

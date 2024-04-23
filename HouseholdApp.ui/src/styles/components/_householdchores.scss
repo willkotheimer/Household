@@ -2,7 +2,8 @@
     position: relative;
     font-size: 1.5em;
     h1 {
-        color: white;
+        font-weight: bold;
+        color: #fff;
         animation: page 1s linear 0s infinite alternate both;
     }
     li {
@@ -81,7 +82,7 @@
         }
     }
     .bottom {
-        padding-top: 10%;
+        padding-top: 5%;
         position: absolute;
         animation:page .5s;
         -moz-animation:page .5s; /* Firefox */
@@ -94,7 +95,7 @@
         clip-path: polygon(26% 0, 68% 14%, 100% 14%, 100% 100%, 64% 100%, 20% 100%, 0 100%, 0 0);
 
         .title {
-            font-size: 3em;
+            font-size: 2em;
             color: #FFF;
             float: left;
             margin-left: 20px;
