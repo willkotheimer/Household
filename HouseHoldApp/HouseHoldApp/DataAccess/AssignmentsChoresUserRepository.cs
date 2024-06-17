@@ -8,11 +8,16 @@ namespace HouseHoldApp.DataAccess
 {
     public class AssignmentsChoresUserRepository
     {
-        const string ConnectionString = "Server=localhost; Database=Household; Trusted_Connection=True";
+        private readonly string _connectionString;
+
+        public AssignmentsChoresUserRepository(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
 
         public List<AssignmentsChoresUser> GetAssignmentChoresUserById(int id)
         {
-            using var db = new SqlConnection(ConnectionString);
+            using var db = new SqlConnection(_connectionString);
             var sql = $@" SELECT u.Firstname,u.Lastname, u.FirebaseKey, c.Name as Chorename,
             c.Description as ChoreDescription, assign.UserId, assign.IsCompleted, assign.Week, assign.Rating,
             assign.Id as assignmentId, c.Id as choreId, u.FirebaseKey, cat.CategoryName

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using HouseHoldApp.DataAccess;
-using HouseHoldApp.Models;
 
 namespace HouseHoldApp.Controllers
 {
@@ -8,23 +8,24 @@ namespace HouseHoldApp.Controllers
     [ApiController]
     public class AssignmentsChoresController : ControllerBase
     {
-        AssignmentsChoresRepository _repo;
-        public AssignmentsChoresController()
+        private readonly AssignmentsChoresRepository _repo;
+
+        public AssignmentsChoresController(AssignmentsChoresRepository repo)
         {
-            _repo = new AssignmentsChoresRepository();
+            _repo = repo;
         }
+
         [HttpGet("household/{id}")]
-        public IActionResult getAssignmentsByHouseHoldId(int id)
+        public async Task<IActionResult> GetAssignmentsByHouseHoldId(int id)
         {
-            var assignmentList = _repo.GetAssignmentChoresByHouseholdId(id);
+            var assignmentList = await _repo.GetAssignmentChoresByHouseholdIdAsync(id);
 
             if (assignmentList == null)
             {
-                return NotFound("This user does not exist");
+                return NotFound("No assignments found for this household");
             }
 
             return Ok(assignmentList);
         }
-
     }
 }

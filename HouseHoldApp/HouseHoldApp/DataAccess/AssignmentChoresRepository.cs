@@ -1,23 +1,28 @@
-﻿using HouseHoldApp.Models;
-using Microsoft.Data.SqlClient;
-using Dapper;
+﻿using HouseHoldApp.Models.HouseHoldApp.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace HouseHoldApp.DataAccess
 {
     public class AssignmentsChoresRepository
     {
-        const string ConnectionString = "Server=localhost; Database=Household; Trusted_Connection=True";
+        private readonly HouseholdContext _context;
 
-        public List<AssignmentsChores> GetAssignmentChoresByHouseholdId(int id)
+        public AssignmentsChoresRepository(HouseholdContext context)
         {
-            using var db = new SqlConnection(ConnectionString);
-           
-            var sql = $@"SELECT * FROM Assignments a
-                         JOIN Chores c ON c.Id = a.ChoreId
-                         WHERE c.HouseHoldId = @id";
-            var results = db.Query<AssignmentsChores>(sql, new { Id = id }).ToList();
+            _context = context;
+        }
+
+        public async Task<List<AssignmentsChores>> GetAssignmentChoresByHouseholdIdAsync(int id)
+        {
+            var results = await _context.Assignments
+                .Include(a => a.Chore)
+                .Where(a => a.Chore.HouseHoldId == id)
+                .Select(a => new AssignmentsChores(a))
+                .ToListAsync();
+
             return results;
         }
     }
