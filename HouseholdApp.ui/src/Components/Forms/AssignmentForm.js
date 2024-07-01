@@ -26,7 +26,6 @@ export default class AssignmentForm extends React.Component {
   componentDidMount() {
     assignment.getAssignmentsByHouseholdFromUserId(this.props.person.id).then((resp) => {
       this.setState({ assignments: resp });
-      console.warn(resp);
     });
     choreData.getUnassignedChoresByWeekAndHouseHold(Week.thisWeek(), this.props.householdId).then((options) => {
       const myarr = [];
@@ -38,7 +37,6 @@ export default class AssignmentForm extends React.Component {
   }
 
   changeHandler = (value) => {
-    console.warn(value);
     this.setState({ selected: value });
   };
 
@@ -52,7 +50,6 @@ export default class AssignmentForm extends React.Component {
         rating: 0,
         choreId: item.value,
       };
-      console.warn(myAssignment);
       assignment.createAssignment(myAssignment).then(() => {
         this.setState({ success: true });
       });

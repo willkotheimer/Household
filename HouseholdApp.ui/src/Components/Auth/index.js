@@ -1,6 +1,7 @@
+import React, { useState, useEffect } from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import 'firebase/auth';
 import { Link } from 'react-router-dom';
-import React, { Component } from 'react';
-import firebase from 'firebase';
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -10,59 +11,60 @@ import {
 import AuthData from '../../helpers/data/authData';
 import Logo from '../../styles/images/Household_logo_badge.svg';
 
-export default class Auth extends Component {
-  state = {
-    user: null,
-    authed: null,
-  };
+const Auth = () =>  {
+  const [user, setUser] = useState(null);
 
-  componentDidMount() {
-    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        this.setState({ user });
+        setUser(user);
       } else {
-        this.setState({ user: false });
+        setUser(null);
       }
     });
-  }
 
-  componentWillUnmount() {
-    this.removeListener();
-  }
+    return () => unsubscribe();
+  }, []);
 
-  render() {
-    const { user } = this.state;
 
-    return (
-      <>
-      { !user ? <button className='nav-link btn btnLogin' onClick={(e) => AuthData.loginClickEvent(e)}><img title='Google Sign In' src={Logo}/></button>
-        : <>
-      <div className='row'>
-        <div className='user-icon-container'>
-          <p>Hi {user?.displayName}</p>
-        </div>
+  const handleLogout = () => {
+    AuthData.logoutClickEvent(); // Assuming this handles logout logic
+  };
+
+
+  return (
+    <>
+      {!user ? (
+        <button className='nav-link btn btnLogin' onClick={(e) => AuthData.loginClickEvent(e)}>
+          <img title='Google Sign In' src={Logo} alt='Google Sign In' />
+        </button>
+      ) : (
+        <div className='row'>
+          <div className='user-icon-container'>
+            <p>Hi {user.displayName}</p>
+          </div>
           <UncontrolledDropdown>
-            <DropdownToggle nav caret></DropdownToggle>
+            <DropdownToggle nav caret>
+              {/* Dropdown content */}
+            </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem>
-                <Link to="/user-dashboard" >
+                <Link to='/user-dashboard'>
                   <p>Dashboard</p>
                 </Link>
               </DropdownItem>
               <DropdownItem>
-                <div
-                  className='nav-link btn btnSecondary'
-                  onClick={(e) => AuthData.logoutClickEvent(e)}
-                >
+                <div className='nav-link btn btnSecondary' onClick={handleLogout}>
                   Logout
                 </div>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </div>
-      </>
-      }
-      </>
-    );
-  }
-}
+      )}
+    </>
+  );
+};
+
+export default Auth;

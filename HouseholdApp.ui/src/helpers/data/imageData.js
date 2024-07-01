@@ -1,54 +1,43 @@
+import { initializeApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import axios from 'axios';
-import firebase from 'firebase';
-import { baseUrl } from '../config.json';
+import config, { baseUrl } from '../config.json';
 
-const imageURL = `${baseUrl}/Images`;
+const app = initializeApp(config.firebaseConfig);
 
-const getImages = () => new Promise((resolve, reject) => {
-  axios.get(`${imageURL}`).then((response) => {
-    resolve(response.data);
-  }).catch((error) => reject(error));
+const auth = getAuth(app); // Initialize Firebase auth
+const userDataUrl = `${baseUrl}/Users`;
+
+const getUid = () => onAuthStateChanged(auth, (user) => {
+  if (user) {
+    return user.uid;
+  }
+  return console.warn('no user logged in.');
 });
 
-const getImagesByChoreId = (choreId) => new Promise((resolve, reject) => {
-  axios.get(`${imageURL}/${choreId}`).then((response) => {
-    resolve(response.data);
-  }).catch((error) => reject(error));
-});
+const loginClickEvent = (e) => {
+  e.preventDefault();
 
-const getMainImageByChoreId = () => new Promise((resolve, reject) => {
-  axios.get(`${imageURL}/oneperchore`).then((response) => {
-    resolve(response.data);
-  }).catch((error) => reject(error));
-});
-
-const addImage = (image) => new Promise((resolve, reject) => {
-  console.warn(image);
-  axios.post(`${imageURL}`, image).then((response) => {
-    resolve(response.data);
-  }).catch((error) => reject(error));
-});
-
-const deleteFromFirebase = (url) => {
-  const pictureRef = firebase.storage().refFromURL(url);
-  pictureRef.delete()
-    .catch((err) => {
-      console.log(err);
-    });
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider).then((cred) => {
+    const user = cred.additionalUserInfo.profile;
+    if (cred.additionalUserInfo.isNewUser) {
+      const userObj = {
+        FirebaseKey: cred.user.uid,
+        FirstName: user.given_name,
+        LastName: user.family_name,
+        Email: user.email,
+      };
+      axios.post(`${userDataUrl}`, userObj);
+    }
+  });
 };
 
-const deleteImage = (imageId, imagelink) => new Promise((resolve, reject) => {
-  console.warn(`${imageURL}/${imageId}`);
-  axios.delete(`${imageURL}/${imageId}`).then((response) => {
-    deleteFromFirebase(imagelink);
-    resolve(response.data);
-  }).catch((error) => reject(error));
-});
-
-export default {
-  getImagesByChoreId,
-  getMainImageByChoreId,
-  addImage,
-  deleteImage,
-  getImages,
+const logoutClickEvent = (e) => {
+  e.preventDefault();
+  window.sessionStorage.removeItem('token');
+  signOut(auth);
+  window.location.href = '/';
 };
+
+export default { getUid, loginClickEvent, logoutClickEvent };

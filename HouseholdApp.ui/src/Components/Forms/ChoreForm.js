@@ -24,7 +24,6 @@ export default class ChoresForm extends React.Component {
       await categoryData.getAllCategories().then((allCategories) => {
         this.setState({ allCategories });
       });
-      console.warn(this.props.uid);
       await householdData.getHousehold(this.props.uid).then((resp) => {
         this.setState({ houseHoldId: resp.householdId });
       });

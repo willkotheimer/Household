@@ -11,7 +11,7 @@ export const UserProvider = (props) => {
 
   const getUserById = (id) => fetch(`https://localhost:44316/api/Users/UserHousehold/${id}`)
     .then((res) => res.json)
-    .then(sethouseholdUsers);
+    .then(sethouseholdUsers).finally(console.warn())
 
   return (
         <UserContext.Provider value={{

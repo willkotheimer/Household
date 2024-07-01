@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
 import logo from '../../styles/images/Household_logo_blue.svg';
 
 export default function Footer(props) {
@@ -9,7 +8,7 @@ export default function Footer(props) {
     <div className="d-flex">
     <div className="col-md-6 mt-md-0 mt-3"><img className="footerLogo" src={logo} />
     <h1 className="text-uppercase font-weight-bold">HOUSEHOLD</h1>
-    <div className="footer-copyright text-center py-3">© 2021 Copyright:
+    <div className="footer-copyright text-center py-3">© 2024 Copyright:
     <a href="/"> HOUSEHOLD</a>
   </div>
     </div>

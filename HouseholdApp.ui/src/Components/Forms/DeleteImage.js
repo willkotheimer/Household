@@ -8,7 +8,6 @@ export default class DeleteImage extends React.Component {
     Image.deleteImage(this.props.imageId, this.props.image).then((resp) => {
       this.props.onUpdate();
       this.props.toggle();
-      console.warn(resp);
     });
   };
 

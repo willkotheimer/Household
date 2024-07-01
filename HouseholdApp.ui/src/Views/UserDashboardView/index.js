@@ -31,7 +31,6 @@ export default function UserDashboardView({
     if (householdId) {
       const assigns = await assignments.getAssignmentsByHouseHoldId(householdId);
       const resp = await assigns;
-      console.warn('week', week.thisWeek());
       const allWeeklyAssignments = await resp.filter((x) => x.week === parseInt(week.thisWeek(), 10));
       const filteredByNotCompletion = await allWeeklyAssignments.filter((x) => !x.isCompleted === true);
       const filteredByCompleted = await allWeeklyAssignments.filter((x) => x.isCompleted === true);
@@ -63,7 +62,7 @@ export default function UserDashboardView({
 
   return (
         <>
-        <div className="HouseholdChores">
+        {!!userHousehold && <div className="HouseholdChores">
           <div className="top">
             <div className="groups">
               <div className="logoContainer">
@@ -87,8 +86,8 @@ export default function UserDashboardView({
                     <div className="topContainers">
                       <div>YOUR HOUSEHOLD</div>
                       <ul>
-                      {userHousehold[0]
-                       && userHousehold[0].map((person, index) => (
+                      {userHousehold
+                       && userHousehold?.map((person, index) => (
                            <>
                            <li key={index}>{person.firstname}</li>
                            </>
@@ -121,7 +120,7 @@ export default function UserDashboardView({
               <Footer />
               </div>
             </div>
-        </div>
+        </div>}
         </>
   );
 }

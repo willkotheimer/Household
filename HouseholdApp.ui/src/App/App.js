@@ -1,65 +1,85 @@
-import React from 'react';
-import firebase from 'firebase';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from '../helpers/Routes';
 import Nav from '../Components/Nav';
 import './App.scss';
-import fbConnection from '../helpers/data/fbConnection';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import Household from '../helpers/data/houseHoldUsers';
 import Footer from '../Components/Footer';
 
-fbConnection();
+function App() {
+  const [user, setUser] = useState(null);
+  const [uid, setUid] = useState('');
+  const [authed, setAuthed] = useState(false);
+  const [userHousehold, setUserHousehold] = useState([]);
+  const [householdId, setHouseholdId] = useState(0);
 
-class App extends React.Component {
-  state = {
-    user: null,
-    uid: {},
-    userHousehold: [],
-    householdId: '',
-    showFooter: false,
-  };
-
-  componentDidMount() {
-    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+  
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        user
-          .getIdToken()
-          .then((token) => sessionStorage.setItem('token', token));
-        this.setState({ user });
-        this.setState({ uid: user.uid });
-        this.setState({ authed: true });
-        Household.getUsersHousehold(user.uid).then((resp) => {
-          this.setState({ userHousehold: resp });
+        user.getIdToken().then((token) => {
+          window.sessionStorage.setItem('token', token);
         });
-        Household.getHousehold(user.uid).then((resp) => {
-          this.setState({ householdId: resp.householdId });
-        });
+        setUser(user);
+        setUid(user.uid);
+        setAuthed(true);
+        
       } else {
-        this.setState({ user: false });
+        setUser(null);
+        setAuthed(false);
       }
-    });
-  }
+      return () => unsubscribe();
+    }, []);
 
-  componentWillUnmount() {
-    this.removeListener();
-  }
+   useEffect(() => {
+  if (user) {
+    // Fetch user household
+    Household.getUsersHousehold(user.uid)
+      .then((resp) => {
+        if (resp && resp.length > 0) {
+          setUserHousehold(resp[0]);
+        } else {
+          setUserHousehold(null); // Handle the case where resp is empty or null
+        }
+      })
+      .catch((error) => {
+        setUserHousehold(null); // Handle error case
+      });
 
-  render() {
-    const { user } = this.state;
-    return (
+    // Fetch household ID
+    Household.getHousehold(user.uid)
+      .then((resp) => {
+        if (resp) {
+        
+          setHouseholdId(resp.householdId);
+        } else {
+          setHouseholdId(null); // Handle the case where resp is empty or null
+        }
+      })
+      .catch((error) => {
+        setHouseholdId(null); // Handle error case
+      });
+  }
+}, [user]);
+
+
+  return (
     <div className='App'>
-          <Router>
-            <Nav user={this.state.user} />
-          <Routes authed={this.state.authed}
-                    showFooter={this.state.showFooter}
-                    uid={this.state.uid}
-                    user={user}
-                    householdId={this.state.householdId}
-                    userHousehold={this.state.userHousehold} />
-          </Router>
+      <Router>
+        <Nav user={user} />
+        <Routes
+          authed={authed}
+          showFooter={true}
+          uid={uid}
+          user={user}
+          householdId={householdId}
+          userHousehold={userHousehold}
+        />
+        <Footer />
+      </Router>
     </div>
-    );
-  }
+  );
 }
 
 export default App;

@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App/App';
+import ErrorBoundary from './ErrorBoundary';
 import reportWebVitals from './reportWebVitals';
 import './styles/index.scss';
 
 ReactDOM.render(
-  <App />,
+  <ErrorBoundary>
+    <App />,
+  </ErrorBoundary>,
   document.getElementById('root'),
 );
 

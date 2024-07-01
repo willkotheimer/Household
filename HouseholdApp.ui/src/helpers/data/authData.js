@@ -1,10 +1,14 @@
-import firebase from 'firebase';
+import { initializeApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import axios from 'axios';
-import { baseUrl } from '../config.json';
+import { baseUrl, firebaseConfig } from '../config.json';
 
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app); // Initialize Firebase auth
 const userDataUrl = `${baseUrl}/Users`;
 
-const getUid = () => firebase.auth().onAuthStateChanged((user) => {
+const getUid = () => onAuthStateChanged(auth, (user) => {
   if (user) {
     return user.uid;
   }
@@ -14,8 +18,8 @@ const getUid = () => firebase.auth().onAuthStateChanged((user) => {
 const loginClickEvent = (e) => {
   e.preventDefault();
 
-  const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then((cred) => {
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider).then((cred) => {
     const user = cred.additionalUserInfo.profile;
     if (cred.additionalUserInfo.isNewUser) {
       const userObj = {
@@ -32,7 +36,7 @@ const loginClickEvent = (e) => {
 const logoutClickEvent = (e) => {
   e.preventDefault();
   window.sessionStorage.removeItem('token');
-  firebase.auth().signOut();
+  signOut(auth);
   window.location.href = '/';
 };
 

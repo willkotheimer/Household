@@ -3,8 +3,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import firebase from 'firebase/app';
-import 'firebase/storage';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import {
   Button, Form,
 } from 'reactstrap';
@@ -23,11 +22,11 @@ export default class Uploader extends React.Component {
   }
 
   onDrop(picture) {
+    const storage = getStorage();
     picture.forEach((pic) => {
-      const storageRef = firebase.storage().ref();
-      const imageRef = storageRef.child(`household-app/${this.state.ChoreId}/${Date.now()}${pic.name}`);
-      imageRef.put(pic).then((snapshot) => {
-        snapshot.ref.getDownloadURL().then((img_url) => {
+      const storageRef = ref(storage, `household-app/${this.state.ChoreId}/${Date.now()}${pic.name}`);
+      uploadBytes(storageRef, pic).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((img_url) => {
           this.setState({ FormImages: [...this.state.FormImages, img_url] });
         });
       });

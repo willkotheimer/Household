@@ -1,6 +1,8 @@
 import axios from 'axios';
-import firebase from 'firebase';
-import config from '../config.json';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import {firebaseConfig} from '../config.json';
 
 axios.interceptors.request.use(
   (request) => {
@@ -14,12 +16,9 @@ axios.interceptors.request.use(
   (err) => Promise.reject(err),
 );
 
-const firebaseApp = () => {
-  if (!firebase.apps.length) {
-    firebase.initializeApp(config.firebaseConfig);
-  } else {
-    firebase.app(); // if already initialized, use that one
-  }
-};
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const firestore = getFirestore(app);
 
-export default firebaseApp;
+export { app, auth, firestore };

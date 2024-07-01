@@ -22,7 +22,6 @@ const GetChoreById = (choreId) => new Promise((resolve, reject) => {
 });
 
 const addChore = (chore) => new Promise((resolve, reject) => {
-  console.warn(chore);
   axios.post(`${choresURL}`, chore).then((response) => {
     resolve(response.data);
   }).catch((error) => reject(error));

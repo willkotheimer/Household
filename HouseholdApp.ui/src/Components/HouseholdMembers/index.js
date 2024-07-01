@@ -11,7 +11,6 @@ export default function AddHouseholdMembers({ uid, user, userHousehold }) {
 
   const update = async () => {
     const myhouseHold = await userHousehold;
-    console.warn(myhouseHold);
     if (myhouseHold) {
       assignments.getAssignmentsByHouseholdFromUserId(Object.values(myhouseHold).filter((uh) => uh.firebaseKey === uid)[0].id).then((resp) => {
         setAssignmentsUsers(resp.filter((x) => x.week === parseInt(week.thisWeek(), 10)));
@@ -25,7 +24,6 @@ export default function AddHouseholdMembers({ uid, user, userHousehold }) {
   useEffect(() => update(), []);
 
   const completeTask = (assignment) => {
-    console.warn(assignment);
     const assignObject = {
       id: assignment.assignmentId,
       userId: parseInt(assignment.userId, 10),

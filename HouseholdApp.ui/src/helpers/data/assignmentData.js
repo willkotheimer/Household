@@ -14,7 +14,6 @@ const getAssignmentsByHouseholdFromUserId = (id) => new Promise((resolve, reject
 const getAssignmentsByUserId = (id) => new Promise((resolve, reject) => axios.get(`${assignmentsURL}/user/${id}`).then((response) => resolve(response.data)).catch((error) => reject(error)));
 
 const setAssignmentAsDone = (assignment) => new Promise((resolve, reject) => {
-  console.warn(assignment);
   axios.patch(`${assignmentsURL}/done`, assignment).then((response) => {
     resolve(response.data);
   }).catch((error) => reject(error));
