@@ -1,12 +1,18 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.EntityFrameworkCore;
-using HouseHoldApp.DataAccess;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 namespace HouseHoldApp
 {
     public class Startup
@@ -19,17 +25,9 @@ namespace HouseHoldApp
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            // Add EF Core
-            services.AddDbContext<HouseholdContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            string connectionString = Configuration.GetConnectionString("DefaultConnection"); //  dapper
-
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
               .AddJwtBearer(options =>
               {
@@ -44,10 +42,7 @@ namespace HouseHoldApp
                       ValidIssuer = "https://securetoken.google.com/toboggan-42319"
                   };
               });
-
-            services.AddScoped<AssignmentsChoresRepository>(); // Register repository
         }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -69,6 +64,5 @@ namespace HouseHoldApp
                 endpoints.MapControllers();
             });
         }
-
     }
 }

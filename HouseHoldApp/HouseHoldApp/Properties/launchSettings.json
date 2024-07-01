@@ -4,7 +4,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:50322",
+      "applicationUrl": "http://localhost:8080", // Changed port number here
       "sslPort": 44316
     }
   },
@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "", // Optional: update or leave as is
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,8 +20,8 @@
     "HouseHoldApp": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "launchUrl": "", // Optional: update or leave as is
+      "applicationUrl": "https://localhost:5001;http://localhost:8080", // Changed port number here
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
